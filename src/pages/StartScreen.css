@@ -1,0 +1,43 @@
+.start-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.game-title {
+  font-family: var(--font-retro-bold);
+  font-size: 32px;
+  color: var(--accent-color);
+  margin-bottom: var(--space-md);
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+.game-subtitle {
+  color: var(--warning-color);
+  margin-bottom: var(--space-xl);
+}
+
+.instructions {
+  font-family: var(--font-reading);
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+  color: var(--text-muted);
+}
+
+.start-btn {
+  font-family: var(--font-retro-bold);
+  font-size: 20px;
+  background-color: var(--success-color);
+  color: #000;
+  padding: var(--space-md) var(--space-xl);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

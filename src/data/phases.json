@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "theme": "Alucinação da IA",
+    "caseText": "Você está fazendo um trabalho de história sobre a Segunda Guerra Mundial e usa a IA generativa para pesquisar batalhas. A IA sugere um evento chamado 'Batalha de Nuvens de Aço', descrevendo detalhes impressionantes.",
+    "question": "O que você faz com essa informação?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Incluo a batalha no meu trabalho, pois os detalhes parecem muito convincentes e a IA sabe de tudo.",
+        "scoreCognitive": -2,
+        "scoreTechDependence": 3,
+        "feedback": "Cuidado! A IA pode gerar 'alucinações' e inventar fatos com muita convicção. Você aceitou a informação passivamente sem checar as fontes, comprometendo a veracidade do seu trabalho."
+      },
+      {
+        "id": "B",
+        "text": "Pesquiso no Google ou em livros de história sobre a 'Batalha de Nuvens de Aço' para confirmar se ela existiu antes de incluir.",
+        "scoreCognitive": 3,
+        "scoreTechDependence": -1,
+        "feedback": "Excelente! Você utilizou a IA como fonte de ideias, mas manteve seu raciocínio analítico ao checar os fatos. É assim que a IA deve ser usada: como complemento, não como verdade absoluta."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "theme": "Plágio Involuntário e Perda Analítica",
+    "caseText": "O professor passou uma redação sobre as consequências das mudanças climáticas. Você pede para a IA escrever o texto todo para você ter uma base.",
+    "question": "Como você utiliza o texto gerado?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Copio o texto inteiro e apenas mudo algumas palavras para não parecer tão óbvio.",
+        "scoreCognitive": -3,
+        "scoreTechDependence": 4,
+        "feedback": "Ao fazer isso, você não exercita seu próprio raciocínio. Além de configurar plágio (mesmo que involuntário), você perde a oportunidade de desenvolver suas próprias ideias e senso crítico."
+      },
+      {
+        "id": "B",
+        "text": "Leio o texto gerado para entender os argumentos principais, mas escrevo minha própria redação usando minhas próprias palavras e pesquisando dados extras.",
+        "scoreCognitive": 4,
+        "scoreTechDependence": -2,
+        "feedback": "Muito bem! Você usou a IA como ferramenta de *brainstorming* (tempestade de ideias) e manteve a autoria e o esforço analítico na sua produção."
+      }
+    ]
+  }
+]
