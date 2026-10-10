@@ -1,79 +1,417 @@
-.game-section {
-  border: 2px solid var(--primary-color);
-  border-radius: var(--border-radius);
-  padding: var(--space-lg);
-  background-color: rgba(0, 0, 0, 0.2);
+/* Game Header & Breadcrumbs */
+.phase-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+  padding-bottom: 16px;
 }
 
-.case-section {
-  border-color: #2a5298;
-}
-
-.phase-title {
-  color: var(--accent-color);
+.phase-badge {
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+  color: #00fff0;
   font-family: var(--font-retro-bold);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid #00fff0;
+  box-shadow: 0 0 10px rgba(0, 255, 240, 0.3);
+  text-transform: uppercase;
+}
+
+.step-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-retro);
+  font-size: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.crumb {
+  color: var(--text-muted);
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.crumb.active {
+  color: #fbc531;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(251, 197, 49, 0.5);
+}
+
+.crumb-sep {
+  color: #4a4e69;
+}
+
+/* Common Step Container */
+.step-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+/* STORY STEP */
+.story-title {
+  font-family: var(--font-reading);
+  font-size: 26px;
+  font-weight: 700;
+  color: #f0f0f0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.page-indicator {
+  align-self: center;
+  font-family: var(--font-retro);
+  font-size: 18px;
+  color: #e94560;
+  background: rgba(233, 69, 96, 0.1);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(233, 69, 96, 0.4);
+}
+
+.story-card {
+  background: #101626;
+  border: 2px solid #1f2d4d;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+}
+
+.story-text {
+  font-family: var(--font-reading);
+  font-size: 19px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.story-nav-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* SOURCES STEP */
+.real-facts-seal {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #fbc531 0%, #e1b12c 100%);
+  color: #1a1a2e;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-family: var(--font-retro-bold);
+  font-size: 14px;
+  box-shadow: 0 0 15px rgba(251, 197, 49, 0.4);
+  letter-spacing: 1px;
+}
+
+.seal-icon {
+  font-size: 20px;
+}
+
+.sources-subtitle {
+  font-family: var(--font-reading);
+  font-size: 20px;
+  color: #a0a0a0;
+  text-align: center;
+  font-style: italic;
+}
+
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.source-card {
+  background: #141c2e;
+  border: 2px solid #2a3b5c;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.source-card:hover {
+  transform: translateY(-2px);
+  border-color: #00fff0;
+}
+
+.source-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.outlet-badge {
+  background: #e94560;
+  color: #fff;
+  font-size: 12px;
+  font-family: var(--font-reading);
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.date-badge {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: var(--font-reading);
+}
+
+.source-title {
+  font-family: var(--font-reading);
+  font-size: 17px;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 600;
+}
+
+.source-link {
+  font-family: var(--font-reading);
+  font-size: 14px;
+  color: #00fff0;
+  text-decoration: none;
+  font-weight: bold;
+  align-self: flex-start;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* QUIZ STEP */
+.case-box {
+  background: #0d1b2a;
+  border-left: 4px solid #00fff0;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.case-tag {
+  font-family: var(--font-retro);
   font-size: 16px;
-  margin-bottom: var(--space-md);
+  color: #00fff0;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .case-text {
   font-family: var(--font-reading);
   font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: var(--space-md);
+  line-height: 1.55;
+  color: #e0e1dd;
+}
+
+.question-box {
+  background: rgba(251, 197, 49, 0.1);
+  border: 1px solid rgba(251, 197, 49, 0.3);
+  padding: 14px 18px;
+  border-radius: 6px;
 }
 
 .question-text {
-  font-weight: bold;
-  color: var(--warning-color);
-}
-
-.options-section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  border-style: dashed;
-}
-
-.option-btn {
-  text-align: left;
   font-family: var(--font-reading);
-  font-size: 16px;
-  background-color: #1a1a2e;
-  border-color: #4a4e69;
+  font-size: 20px;
+  color: #fbc531;
+  font-weight: 600;
+  margin: 0;
 }
 
-.option-btn.selected {
-  background-color: var(--primary-color);
-  border-color: var(--text-main);
-}
-
-.feedback-section {
-  background-color: rgba(76, 209, 55, 0.1);
-  border-color: var(--success-color);
+.options-grid {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 12px;
 }
 
-.feedback-section h3 {
-  color: var(--success-color);
-  margin-bottom: var(--space-md);
+.option-card-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: left;
+  background: #16213e;
+  border: 2px solid #2a3b5c;
+  padding: 16px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #f0f0f0;
 }
 
-.feedback-text {
+.option-card-btn:hover {
+  background: #1f2d4d;
+  border-color: #00fff0;
+  transform: translateX(4px);
+  box-shadow: 0 0 12px rgba(0, 255, 240, 0.2);
+}
+
+.option-id {
+  font-family: var(--font-retro-bold);
+  font-size: 18px;
+  color: #00fff0;
+  background: rgba(0, 255, 240, 0.15);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 240, 0.3);
+  flex-shrink: 0;
+}
+
+.option-text {
   font-family: var(--font-reading);
   font-size: 16px;
   line-height: 1.5;
-  margin-bottom: var(--space-lg);
 }
 
-.next-btn {
-  background-color: var(--success-color);
-  color: #000;
+/* FEEDBACK STEP */
+.selected-choice-preview {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  padding: 14px;
+  border-radius: 6px;
 }
 
-.next-btn:hover {
-  background-color: #44bd32;
+.preview-label {
+  font-family: var(--font-retro);
+  font-size: 16px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.preview-text {
+  font-family: var(--font-reading);
+  font-size: 16px;
+  color: #e0e1dd;
+  font-style: italic;
+}
+
+.feedback-card {
+  background: #14231e;
+  border: 2px solid var(--success-color);
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 0 20px rgba(76, 209, 55, 0.15);
+}
+
+.feedback-card h3 {
+  font-family: var(--font-reading);
+  font-size: 22px;
+  color: var(--success-color);
+  margin: 0;
+}
+
+.feedback-content {
+  font-family: var(--font-reading);
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.impact-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.score-tag {
+  font-family: var(--font-retro);
+  font-size: 18px;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.score-tag.positive {
+  background: rgba(76, 209, 55, 0.2);
+  border: 1px solid var(--success-color);
+  color: var(--success-color);
+}
+
+.score-tag.negative {
+  background: rgba(233, 69, 96, 0.2);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* MORAL STEP */
+.moral-card {
+  background: linear-gradient(135deg, #1f1d36 0%, #17152d 100%);
+  border: 3px solid #fbc531;
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 0 25px rgba(251, 197, 49, 0.25);
+}
+
+.moral-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.moral-card h2 {
+  font-family: var(--font-retro-bold);
+  font-size: 20px;
+  color: #fbc531;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.moral-text {
+  font-family: var(--font-reading);
+  font-size: 20px;
+  line-height: 1.55;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Buttons */
+.nav-btn {
+  font-family: var(--font-retro);
+  font-size: 20px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background-color: var(--accent-color);
+  border-color: #b82e45;
+  color: #ffffff;
+}
+
+.primary-btn:hover {
+  background-color: #ff5270;
+}
+
+.secondary-btn {
+  background-color: #2a3b5c;
+  border-color: #1a263d;
+  color: #ffffff;
+}
+
+.action-btn {
+  align-self: center;
+  width: 100%;
+  max-width: 360px;
 }

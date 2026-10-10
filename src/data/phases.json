@@ -1,46 +1,323 @@
-[
-  {
-    "id": 1,
-    "theme": "Alucinação da IA",
-    "caseText": "Você está fazendo um trabalho de história sobre a Segunda Guerra Mundial e usa a IA generativa para pesquisar batalhas. A IA sugere um evento chamado 'Batalha de Nuvens de Aço', descrevendo detalhes impressionantes.",
-    "question": "O que você faz com essa informação?",
-    "options": [
-      {
-        "id": "A",
-        "text": "Incluo a batalha no meu trabalho, pois os detalhes parecem muito convincentes e a IA sabe de tudo.",
-        "scoreCognitive": -2,
-        "scoreTechDependence": 3,
-        "feedback": "Cuidado! A IA pode gerar 'alucinações' e inventar fatos com muita convicção. Você aceitou a informação passivamente sem checar as fontes, comprometendo a veracidade do seu trabalho."
-      },
-      {
-        "id": "B",
-        "text": "Pesquiso no Google ou em livros de história sobre a 'Batalha de Nuvens de Aço' para confirmar se ela existiu antes de incluir.",
-        "scoreCognitive": 3,
-        "scoreTechDependence": -1,
-        "feedback": "Excelente! Você utilizou a IA como fonte de ideias, mas manteve seu raciocínio analítico ao checar os fatos. É assim que a IA deve ser usada: como complemento, não como verdade absoluta."
-      }
-    ]
+{
+  "_formato": {
+    "ordemDeExibicao": "story.pages (uma por tela, avançar com botão) -> sources (selo 'Baseado em fatos reais') -> caseText + question + options -> feedback -> moral",
+    "pontuacao": "scoreCognitive: positivo = raciocínio próprio; scoreTechDependence: positivo = mais dependência da IA"
   },
-  {
-    "id": 2,
-    "theme": "Plágio Involuntário e Perda Analítica",
-    "caseText": "O professor passou uma redação sobre as consequências das mudanças climáticas. Você pede para a IA escrever o texto todo para você ter uma base.",
-    "question": "Como você utiliza o texto gerado?",
-    "options": [
-      {
-        "id": "A",
-        "text": "Copio o texto inteiro e apenas mudo algumas palavras para não parecer tão óbvio.",
-        "scoreCognitive": -3,
-        "scoreTechDependence": 4,
-        "feedback": "Ao fazer isso, você não exercita seu próprio raciocínio. Além de configurar plágio (mesmo que involuntário), você perde a oportunidade de desenvolver suas próprias ideias e senso crítico."
+  "phases": [
+    {
+      "id": 1,
+      "theme": "Alucinação da IA",
+      "story": {
+        "title": "O advogado e os casos que não existiam",
+        "pages": [
+          "Em 2023, nos Estados Unidos, um advogado precisava defender um cliente num processo contra uma companhia aérea.",
+          "Para encontrar casos parecidos, ele pediu ajuda ao ChatGPT. A IA entregou seis casos, com nomes, datas e trechos de decisões. Parecia tudo muito profissional.",
+          "Desconfiado, o advogado perguntou ao próprio ChatGPT se os casos eram reais. A IA pediu desculpas pela confusão e garantiu que sim: segundo ela, dava para achar todos em bases jurídicas oficiais.",
+          "Ele confiou e usou os casos no processo. Mas a outra parte não conseguiu achar nenhum deles. O juiz concluiu que eram decisões falsas, inventadas pela IA, e os advogados foram multados em US$ 5.000."
+        ]
       },
-      {
-        "id": "B",
-        "text": "Leio o texto gerado para entender os argumentos principais, mas escrevo minha própria redação usando minhas próprias palavras e pesquisando dados extras.",
-        "scoreCognitive": 4,
-        "scoreTechDependence": -2,
-        "feedback": "Muito bem! Você usou a IA como ferramenta de *brainstorming* (tempestade de ideias) e manteve a autoria e o esforço analítico na sua produção."
-      }
-    ]
-  }
-]
+      "sources": [
+        {
+          "title": "O ChatGPT mentiu? Parece que sim",
+          "outlet": "Olhar Digital",
+          "date": "27/05/2023",
+          "url": "https://olhardigital.com.br/2023/05/27/pro/o-chatgpt-mentiu-parece-que-sim/"
+        },
+        {
+          "title": "Advogados usam IA e citam caso fictício em processo nos EUA",
+          "outlet": "Olhar Digital",
+          "date": "20/02/2025",
+          "url": "https://olhardigital.com.br/2025/02/20/pro/advogados-usam-ia-e-citam-caso-ficticio-em-processo-nos-eua/"
+        }
+      ],
+      "caseText": "Agora é com você. Num trabalho de História sobre a Segunda Guerra Mundial, a IA sugere uma 'Batalha de Nuvens de Aço', com detalhes impressionantes. Você pergunta à IA: 'Essa batalha realmente existiu?' e ela responde: 'Sim, está registrada em vários livros de História.'",
+      "question": "O que você faz?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Procuro a batalha em livros didáticos, sites de museus ou de universidades. Se não encontrar em nenhuma fonte confiável, não incluo no trabalho.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Excelente! Você tratou a IA como ponto de partida e conferiu os fatos fora dela. É exatamente o que faltou ao advogado da história."
+        },
+        {
+          "id": "B",
+          "text": "Peço à IA o nome do livro e da página onde a batalha aparece e, se ela der uma referência, incluo no trabalho.",
+          "scoreCognitive": 0,
+          "scoreTechDependence": 1,
+          "feedback": "Você teve a boa ideia de pedir a fonte, mas parou no meio do caminho. A IA também pode inventar livros e páginas. A referência precisa ser conferida por você, fora da IA."
+        },
+        {
+          "id": "C",
+          "text": "Incluo a batalha. Eu perguntei se era real e a própria IA confirmou.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Foi o mesmo erro do advogado: perguntar à IA se a IA está certa. Ela não verifica fatos, só gera texto que parece verdadeiro, e pode insistir na mentira com muita convicção."
+        }
+      ],
+      "moral": "A IA não é uma fonte: ela pode inventar informações com cara de verdade. Quem confere é você."
+    },
+    {
+      "id": 2,
+      "theme": "Fontes duvidosas e resposta absurda",
+      "story": {
+        "title": "A IA que mandou pôr cola na pizza",
+        "pages": [
+          "Em maio de 2024, o Google lançou nos Estados Unidos um recurso que usa IA para resumir os resultados das buscas e mostrar a resposta no topo da página.",
+          "Poucos dias depois, as redes sociais se encheram de respostas absurdas. Para a pergunta 'como fazer o queijo grudar na pizza', a IA sugeriu misturar cola não tóxica no molho. Para outra, disse que o ideal era comer uma pedra pequena por dia.",
+          "A própria empresa explicou o que aconteceu: a dica da cola veio de um comentário de brincadeira num fórum, e a das pedras veio de um site de humor e sátira. A IA copiou as piadas como se fossem informação séria.",
+          "O Google reconheceu os erros e anunciou mais restrições para esse tipo de resposta."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Google reconhece respostas bizarras da IA na Busca e anuncia mudanças",
+          "outlet": "Canaltech",
+          "url": "https://canaltech.com.br/inteligencia-artificial/google-reconhece-respostas-bizarras-da-ia-na-busca-e-anuncia-mudancas-291187/"
+        },
+        {
+          "title": "Com IA, Google manda você comer pedra e botar cola na pizza",
+          "outlet": "Poder360",
+          "url": "https://www.poder360.com.br/futuro-indicativo/com-ia-google-manda-voce-comer-pedra-e-botar-cola-na-pizza/"
+        }
+      ],
+      "caseText": "Agora é com você. Num trabalho de Ciências sobre alimentação saudável, você pede um resumo à IA. No meio dele aparece uma dica estranha, dita como certa: 'segundo cientistas, é recomendado fazer X'. A IA não mostra nenhum link ou nome de estudo.",
+      "question": "O que você faz com essa dica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pesquiso a dica em sites de órgãos de saúde ou universidades para ver se existe esse estudo. Só uso se encontrar a origem.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Muito bem! Você foi atrás da origem da informação. A IA mistura fontes boas, fóruns e até piadas, e não sabe a diferença entre elas."
+        },
+        {
+          "id": "B",
+          "text": "Pergunto a um colega ou ao professor se essa dica faz sentido antes de decidir.",
+          "scoreCognitive": 2,
+          "scoreTechDependence": 0,
+          "feedback": "Boa atitude: você desconfiou e pediu uma segunda opinião humana. Para ficar completo, ainda falta checar a origem da informação em uma fonte confiável."
+        },
+        {
+          "id": "C",
+          "text": "Incluo a dica no trabalho. Se diz 'segundo cientistas', deve ter uma pesquisa por trás.",
+          "scoreCognitive": -2,
+          "scoreTechDependence": 3,
+          "feedback": "Cuidado! A expressão 'segundo cientistas' não prova nada. No caso real, a 'pesquisa' era uma piada de um site de sátira."
+        }
+      ],
+      "moral": "Resposta sem fonte é só uma afirmação. A IA pode copiar piadas e boatos e apresentá-los como fatos. Pergunte sempre: de onde isso veio?"
+    },
+    {
+      "id": 3,
+      "theme": "Plágio e acusação injusta",
+      "story": {
+        "title": "Escrevi sozinho, mas o detector disse que não",
+        "pages": [
+          "Com a chegada do ChatGPT, muitos professores passaram a usar 'detectores de IA' para descobrir se um aluno copiou um texto de um robô.",
+          "Só que esses detectores erram. Um estudo da Universidade de Stanford testou 7 deles com redações escritas por pessoas que não têm o inglês como língua materna. Mais da metade dos textos, todos escritos por humanos, foi marcada como 'gerada por IA'.",
+          "No Brasil, o site Aos Fatos fez outro teste. Detectores classificaram como humano um texto gerado por IA. E o próprio ChatGPT 'confirmou' que tinha escrito um trecho de um livro publicado em 1998.",
+          "A OpenAI, criadora do ChatGPT, chegou a lançar o seu detector e depois o desligou, porque ele errava muito. Especialistas alertam: o resultado de um detector é uma probabilidade, não uma prova."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Detectores de textos produzidos por GPT têm vieses contra falantes não nativos",
+          "outlet": "Insper (sobre estudo de Stanford)",
+          "date": "09/2023",
+          "url": "https://www.insper.edu.br/pt/noticias/2023/9/detectores-de-textos-produzidos-por-gpt-tem-vieses-contra-falant"
+        },
+        {
+          "title": "Uso do ChatGPT gera conflitos na sala de aula e acusações de plágio sem provas",
+          "outlet": "Aos Fatos",
+          "url": "https://www.aosfatos.org/noticias/chatgpt-alunos-professores-plagio/"
+        },
+        {
+          "title": "Using AI detectors to grade student work",
+          "outlet": "ETS",
+          "url": "https://www.ets.org/content/ets-org/language-master/pt_pt/home/insights-and-perspectives/using-ai-detectors-grade-student-work.html"
+        }
+      ],
+      "caseText": "Agora é com você. Você escreveu a redação sozinho, com muito esforço. O professor te chama e mostra o resultado de um detector: '92% de chance de ter sido escrito por IA'. Ele diz que vai zerar o trabalho.",
+      "question": "Como você reage?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mantenho a calma, mostro meus rascunhos e o histórico de edição do documento, explico meu texto com minhas palavras e peço que o resultado do detector não seja a única prova.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Perfeito! Rascunhos e a capacidade de explicar o que escreveu são as melhores provas de autoria. E você lembrou que um detector é só uma probabilidade, não uma prova."
+        },
+        {
+          "id": "B",
+          "text": "Fico em silêncio e aceito o zero para evitar confusão.",
+          "scoreCognitive": -1,
+          "scoreTechDependence": 0,
+          "feedback": "Dá para entender a vontade de evitar o conflito, mas aceitar uma acusação injusta não resolve nada. Conversar com calma e mostrar o seu processo de escrita é o caminho."
+        },
+        {
+          "id": "C",
+          "text": "Peço para a IA reescrever meu texto de um jeito que o detector não perceba, e entrego de novo.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Ao fazer isso você abandona o seu texto, que era original, e passa a depender da IA. Além disso, esconder o uso de IA gera desconfiança, quando o ideal é combinar com o professor o que pode ou não usar."
+        }
+      ],
+      "moral": "Detectores erram. Guardar rascunhos e saber explicar o que escreveu protege sua autoria. E, se usar IA, combine as regras antes."
+    },
+    {
+      "id": 4,
+      "theme": "Dependência e perda do raciocínio",
+      "story": {
+        "title": "O cérebro de quem escreve com e sem IA",
+        "pages": [
+          "Em 2025, pesquisadores do MIT, uma das universidades mais conhecidas do mundo, fizeram um experimento. Eles juntaram 54 voluntários e pediram que escrevessem redações em três situações: com ChatGPT, só com buscador do Google, ou sem nenhuma ferramenta.",
+          "Durante a escrita, os participantes usaram um aparelho que mede a atividade cerebral. O grupo que usou o ChatGPT teve o menor envolvimento do cérebro e mais dificuldade de lembrar o que tinha escrito.",
+          "Depois, quem estava acostumado ao ChatGPT teve que escrever sem ele, e foi pior. Já quem começou escrevendo sozinho e só depois usou a IA se saiu melhor.",
+          "Atenção: o estudo ainda não foi revisado por outros cientistas, e especialistas pedem cautela ao interpretar os resultados. Mas ele ajuda a pensar numa pergunta importante: em que momento a IA entra no seu processo de aprender?"
+        ]
+      },
+      "sources": [
+        {
+          "title": "Usuários de ChatGPT têm 'menor nível de engajamento cerebral', diz novo estudo do MIT",
+          "outlet": "InfoMoney / Agência O Globo",
+          "url": "https://www.infomoney.com.br/?p=2917451"
+        },
+        {
+          "title": "Your Brain On ChatGPT: Everything Educators Need To Know About MIT's AI Study",
+          "outlet": "Tech & Learning",
+          "url": "https://www.techlearning.com/news/your-brain-on-chatgpt-everything-educators-need-to-know-about-mits-ai-study"
+        }
+      ],
+      "caseText": "Agora é com você. O professor pediu uma redação sobre mudanças climáticas, em casa, para entregar amanhã. Você está cansado e com pouco tempo, e a IA consegue escrever tudo em segundos.",
+      "question": "Como você usa a IA nessa tarefa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Escrevo primeiro um rascunho com minhas ideias. Depois peço à IA que aponte falhas e sugira melhorias, e decido sozinho o que aceitar.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Excelente! Você pensou primeiro e usou a IA como revisora. Foi o grupo que se saiu melhor no estudo: raciocínio seu, IA como apoio."
+        },
+        {
+          "id": "B",
+          "text": "Peço à IA uma lista de tópicos e dados para eu pesquisar. Depois escrevo a redação com minhas próprias palavras.",
+          "scoreCognitive": 2,
+          "scoreTechDependence": 0,
+          "feedback": "Bom caminho! Usar a IA para tempestade de ideias funciona, desde que a escrita e a análise sejam suas. Dica: tente montar seus próprios argumentos antes de pedir a lista."
+        },
+        {
+          "id": "C",
+          "text": "Peço a redação pronta, leio rapidamente e entrego com pequenos ajustes.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Você economizou tempo, mas perdeu o treino de pensar e escrever, que é o objetivo da tarefa. Além de ter mais chance de esquecer o que entregou, isso pode configurar plágio."
+        }
+      ],
+      "moral": "Pensar primeiro e usar a IA depois fortalece o aprendizado. Começar pela IA pode transformar você em um espectador do próprio trabalho."
+    },
+    {
+      "id": 5,
+      "theme": "Viés e mercado de trabalho",
+      "story": {
+        "title": "O robô que não gostava de currículos de mulheres",
+        "pages": [
+          "Entre 2014 e 2017, a Amazon desenvolveu em fase de testes uma IA para ajudar a escolher candidatos a vagas. Ela dava notas de 1 a 5 estrelas para cada currículo, como se fossem produtos do site.",
+          "O sistema aprendeu analisando os currículos recebidos pela empresa nos 10 anos anteriores. Como a maioria era de homens, a IA 'concluiu' que candidatos homens eram melhores.",
+          "Ela passou a dar notas menores para currículos que continham a palavra 'women's' (feminino), como 'capitã do clube de xadrez feminino'. A Amazon ajustou o sistema, mas não teve certeza de que ele não acharia outras formas de discriminar. O projeto foi encerrado.",
+          "A Amazon afirma que a ferramenta nunca foi usada pelos recrutadores para avaliar candidatos. De qualquer forma, o caso virou um exemplo clássico de como a IA copia os preconceitos que estão nos dados."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Amazon scraps secret AI recruiting tool that showed bias against women (Reuters)",
+          "outlet": "HR Reporter",
+          "url": "https://www.hrreporter.com/focus-areas/recruitment-and-staffing/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women/287026"
+        },
+        {
+          "title": "Amazon abandons AI recruiting tool as it discriminated against women",
+          "outlet": "Recruiter",
+          "date": "10/2018",
+          "url": "https://www.recruiter.co.uk/news/2018/10/amazon-abandons-ai-recruiting-tool-it-discriminated-against-women"
+        }
+      ],
+      "caseText": "Agora é com você. Você é o responsável por escolher os monitores de uma feira de ciências da escola. Para ganhar tempo, usa uma IA que dá nota aos candidatos com base nos monitores dos anos anteriores, e a maioria deles era de meninos. O ranking da IA coloca só meninos nas primeiras posições.",
+      "question": "O que você faz?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Uso o ranking só como apoio. Defino critérios claros (interesse, disponibilidade, conhecimento), converso com os candidatos e desconfio do ranking por favorecer um grupo.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Muito bem! Você percebeu que a IA aprendeu com dados desiguais e manteve a decisão final com você, com critérios justos."
+        },
+        {
+          "id": "B",
+          "text": "Leio com atenção os 5 primeiros do ranking e escolho entre eles os que parecerem melhores.",
+          "scoreCognitive": 0,
+          "scoreTechDependence": 2,
+          "feedback": "Você não aceitou o ranking cegamente, mas continuou limitado por ele. Quem ficou de fora do ranking nem teve chance de ser avaliado."
+        },
+        {
+          "id": "C",
+          "text": "Aceito o ranking. A IA é neutra e não tem preconceito, então é mais justa do que eu.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Cuidado! A IA não é neutra: ela aprende com os dados que recebe e pode repetir (e aumentar) preconceitos que já existiam, como aconteceu no caso real."
+        }
+      ],
+      "moral": "A IA copia os padrões dos dados. Se os dados são desiguais, as decisões também serão. Decisões que afetam pessoas precisam de um olhar humano."
+    },
+    {
+      "id": 6,
+      "theme": "IA como aliada nos estudos (Enem)",
+      "story": {
+        "title": "A IA entrou na rotina de quem estuda para o Enem",
+        "pages": [
+          "No Pisa 2025, avaliação internacional da OCDE, 48% dos estudantes brasileiros de 15 anos disseram usar chatbots de IA pelo menos uma vez por semana para aprender. A média dos países da OCDE foi de 46%.",
+          "Os usos são variados: 40% usam a IA para pesquisar um assunto novo, 31% para resumir textos e 27% para escrever uma redação inteira.",
+          "A IA também já faz parte do sistema oficial. O aplicativo MEC Enem, lançado em outubro de 2025, dá uma nota estimada para a redação em cerca de um minuto, e cursinhos usam IA para corrigir treinos.",
+          "Mas na prova de verdade a redação é manuscrita e feita sob fiscalização, ou seja, ninguém escreve por você. No dia, só vale o que você aprendeu a fazer sozinho."
+        ]
+      },
+      "sources": [
+        {
+          "title": "Quase metade dos alunos no Brasil usa ferramentas como ChatGPT para estudar",
+          "outlet": "A Tarde (dados do Pisa 2025)",
+          "url": "https://atarde.com.br/brasil/quase-metade-dos-alunos-no-brasil-usa-ferramentas-como-chatgpt-para-estudar-1401284"
+        },
+        {
+          "title": "IA no ENEM: tecnologia deve acelerar correção de redações e transformar avaliações",
+          "outlet": "Prepara Enem",
+          "url": "https://www.preparaenem.com/curiosidades/ia-no-enem-tecnologia-deve-acelerar-correcao-de-redacoes-e-transformar-avaliacoes.htm"
+        }
+      ],
+      "caseText": "Agora é com você. Faltam dois meses para o Enem e você precisa treinar a redação. Uma IA pode ajudar de várias formas.",
+      "question": "Qual é a melhor forma de usar a IA nos seus treinos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Escrevo a redação sozinho, peço à IA um feedback por competência do Enem, reescrevo com base nas dicas e comparo minha evolução.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Ótima estratégia! Você usou a IA como um professor particular: o treino de escrita foi seu, e a IA ajudou a enxergar os pontos fracos."
+        },
+        {
+          "id": "B",
+          "text": "Peço à IA uma redação nota 1000 sobre o tema, estudo a estrutura dela e depois escrevo a minha com outros argumentos.",
+          "scoreCognitive": 1,
+          "scoreTechDependence": 1,
+          "feedback": "Estudar um texto modelo pode ajudar, mas existe o risco de você acabar copiando o jeito de pensar da IA. Tente escrever o seu texto primeiro e comparar depois."
+        },
+        {
+          "id": "C",
+          "text": "Peço várias redações prontas à IA e decoro os parágrafos para usar no dia da prova.",
+          "scoreCognitive": -2,
+          "scoreTechDependence": 3,
+          "feedback": "Decorar textos prontos não treina sua capacidade de argumentar. Na prova, o tema será diferente e a redação, escrita à mão, é sua. Quem aprendeu só a copiar sofre."
+        }
+      ],
+      "moral": "A IA pode ser uma ótima aliada para estudar, quando você faz o trabalho de pensar e ela ajuda a melhorar."
+    }
+  ]
+}
