@@ -5,20 +5,20 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+  border-bottom: 2px dashed var(--border-color);
   padding-bottom: 16px;
 }
 
 .phase-badge {
-  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-  color: #00fff0;
+  background: var(--primary-color);
+  color: var(--header-glow);
   font-family: var(--font-retro-bold);
   font-size: 13px;
   letter-spacing: 1.5px;
   padding: 6px 14px;
   border-radius: 20px;
-  border: 2px solid #00fff0;
-  box-shadow: 0 0 10px rgba(0, 255, 240, 0.3);
+  border: 2px solid var(--header-glow);
+  box-shadow: 0 0 10px rgba(0, 255, 240, 0.2);
   text-transform: uppercase;
 }
 
@@ -38,13 +38,12 @@
 }
 
 .crumb.active {
-  color: #fbc531;
+  color: var(--warning-color);
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(251, 197, 49, 0.5);
 }
 
 .crumb-sep {
-  color: #4a4e69;
+  color: var(--text-muted);
 }
 
 /* Common Step Container */
@@ -60,7 +59,7 @@
   font-family: var(--font-reading);
   font-size: 26px;
   font-weight: 700;
-  color: #f0f0f0;
+  color: var(--text-main);
   text-align: center;
   line-height: 1.3;
 }
@@ -69,7 +68,7 @@
   align-self: center;
   font-family: var(--font-retro);
   font-size: 18px;
-  color: #e94560;
+  color: var(--accent-color);
   background: rgba(233, 69, 96, 0.1);
   padding: 4px 12px;
   border-radius: 12px;
@@ -77,11 +76,11 @@
 }
 
 .story-card {
-  background: #101626;
-  border: 2px solid #1f2d4d;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 8px;
   padding: 24px;
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
   min-height: 140px;
   display: flex;
   align-items: center;
@@ -91,7 +90,7 @@
   font-family: var(--font-reading);
   font-size: 19px;
   line-height: 1.6;
-  color: #e2e8f0;
+  color: var(--text-main);
 }
 
 .story-nav-buttons {
@@ -106,24 +105,20 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, #fbc531 0%, #e1b12c 100%);
+  background: var(--warning-color);
   color: #1a1a2e;
   padding: 8px 20px;
   border-radius: 24px;
   font-family: var(--font-retro-bold);
   font-size: 14px;
-  box-shadow: 0 0 15px rgba(251, 197, 49, 0.4);
+  box-shadow: 0 0 15px rgba(251, 197, 49, 0.3);
   letter-spacing: 1px;
-}
-
-.seal-icon {
-  font-size: 20px;
 }
 
 .sources-subtitle {
   font-family: var(--font-reading);
   font-size: 20px;
-  color: #a0a0a0;
+  color: var(--text-muted);
   text-align: center;
   font-style: italic;
 }
@@ -135,8 +130,8 @@
 }
 
 .source-card {
-  background: #141c2e;
-  border: 2px solid #2a3b5c;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 8px;
   padding: 16px 20px;
   display: flex;
@@ -147,7 +142,7 @@
 
 .source-card:hover {
   transform: translateY(-2px);
-  border-color: #00fff0;
+  border-color: var(--header-glow);
 }
 
 .source-meta {
@@ -157,7 +152,7 @@
 }
 
 .outlet-badge {
-  background: #e94560;
+  background: var(--accent-color);
   color: #fff;
   font-size: 12px;
   font-family: var(--font-reading);
@@ -175,7 +170,7 @@
 .source-title {
   font-family: var(--font-reading);
   font-size: 17px;
-  color: #ffffff;
+  color: var(--text-main);
   margin: 0;
   font-weight: 600;
 }
@@ -183,7 +178,7 @@
 .source-link {
   font-family: var(--font-reading);
   font-size: 14px;
-  color: #00fff0;
+  color: var(--header-glow);
   text-decoration: none;
   font-weight: bold;
   align-self: flex-start;
@@ -195,16 +190,17 @@
 
 /* QUIZ STEP */
 .case-box {
-  background: #0d1b2a;
-  border-left: 4px solid #00fff0;
+  background: var(--card-bg);
+  border-left: 4px solid var(--header-glow);
   padding: 20px;
   border-radius: 6px;
+  border: 1px solid var(--card-border);
 }
 
 .case-tag {
   font-family: var(--font-retro);
   font-size: 16px;
-  color: #00fff0;
+  color: var(--header-glow);
   letter-spacing: 1px;
   display: block;
   margin-bottom: 8px;
@@ -214,7 +210,7 @@
   font-family: var(--font-reading);
   font-size: 18px;
   line-height: 1.55;
-  color: #e0e1dd;
+  color: var(--text-main);
 }
 
 .question-box {
@@ -227,7 +223,7 @@
 .question-text {
   font-family: var(--font-reading);
   font-size: 20px;
-  color: #fbc531;
+  color: var(--warning-color);
   font-weight: 600;
   margin: 0;
 }
@@ -243,26 +239,25 @@
   align-items: flex-start;
   gap: 16px;
   text-align: left;
-  background: #16213e;
-  border: 2px solid #2a3b5c;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   padding: 16px 20px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: #f0f0f0;
+  color: var(--text-main);
 }
 
 .option-card-btn:hover {
-  background: #1f2d4d;
-  border-color: #00fff0;
+  border-color: var(--header-glow);
   transform: translateX(4px);
-  box-shadow: 0 0 12px rgba(0, 255, 240, 0.2);
+  box-shadow: 0 0 12px rgba(0, 255, 240, 0.15);
 }
 
 .option-id {
   font-family: var(--font-retro-bold);
   font-size: 18px;
-  color: #00fff0;
+  color: var(--header-glow);
   background: rgba(0, 255, 240, 0.15);
   padding: 4px 10px;
   border-radius: 4px;
@@ -278,8 +273,8 @@
 
 /* FEEDBACK STEP */
 .selected-choice-preview {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px dashed rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px dashed var(--border-color);
   padding: 14px;
   border-radius: 6px;
 }
@@ -295,19 +290,18 @@
 .preview-text {
   font-family: var(--font-reading);
   font-size: 16px;
-  color: #e0e1dd;
+  color: var(--text-main);
   font-style: italic;
 }
 
 .feedback-card {
-  background: #14231e;
+  background: var(--card-bg);
   border: 2px solid var(--success-color);
   border-radius: 8px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 0 20px rgba(76, 209, 55, 0.15);
 }
 
 .feedback-card h3 {
@@ -321,7 +315,7 @@
   font-family: var(--font-reading);
   font-size: 18px;
   line-height: 1.6;
-  color: #e2e8f0;
+  color: var(--text-main);
 }
 
 .impact-badges {
@@ -339,21 +333,21 @@
 }
 
 .score-tag.positive {
-  background: rgba(76, 209, 55, 0.2);
+  background: rgba(76, 209, 55, 0.15);
   border: 1px solid var(--success-color);
   color: var(--success-color);
 }
 
 .score-tag.negative {
-  background: rgba(233, 69, 96, 0.2);
+  background: rgba(233, 69, 96, 0.15);
   border: 1px solid var(--accent-color);
   color: var(--accent-color);
 }
 
 /* MORAL STEP */
 .moral-card {
-  background: linear-gradient(135deg, #1f1d36 0%, #17152d 100%);
-  border: 3px solid #fbc531;
+  background: var(--card-bg);
+  border: 3px solid var(--warning-color);
   border-radius: 12px;
   padding: 32px 24px;
   text-align: center;
@@ -361,18 +355,13 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 0 25px rgba(251, 197, 49, 0.25);
-}
-
-.moral-icon {
-  font-size: 48px;
-  line-height: 1;
+  box-shadow: 0 0 20px rgba(251, 197, 49, 0.2);
 }
 
 .moral-card h2 {
   font-family: var(--font-retro-bold);
   font-size: 20px;
-  color: #fbc531;
+  color: var(--warning-color);
   margin: 0;
   letter-spacing: 1px;
 }
@@ -381,7 +370,7 @@
   font-family: var(--font-reading);
   font-size: 20px;
   line-height: 1.55;
-  color: #ffffff;
+  color: var(--text-main);
   font-weight: 500;
 }
 
@@ -396,17 +385,17 @@
 
 .primary-btn {
   background-color: var(--accent-color);
-  border-color: #b82e45;
+  border-color: var(--button-border);
   color: #ffffff;
 }
 
 .primary-btn:hover {
-  background-color: #ff5270;
+  background-color: #d63031;
 }
 
 .secondary-btn {
-  background-color: #2a3b5c;
-  border-color: #1a263d;
+  background-color: var(--primary-color);
+  border-color: var(--button-border);
   color: #ffffff;
 }
 

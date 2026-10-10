@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useGameState } from '../contexts/GameStateContext';
 import { ScreenContainer } from '../components/layout/ScreenContainer';
 import { audioService } from '../services/AudioService';
@@ -6,17 +5,11 @@ import './StartScreen.css';
 
 export const StartScreen = () => {
   const { startGame, goToCredits } = useGameState();
-  const [isMuted, setIsMuted] = useState(audioService.isMuted);
 
   const handleStart = () => {
     audioService.playClick();
     audioService.startBgm();
     startGame();
-  };
-
-  const handleToggleAudio = () => {
-    const muted = audioService.toggleMute();
-    setIsMuted(muted);
   };
 
   const handleCredits = () => {
@@ -27,12 +20,6 @@ export const StartScreen = () => {
   return (
     <ScreenContainer>
       <div className="start-content fade-enter-active">
-        <div className="top-bar">
-          <button className="audio-toggle-btn" onClick={handleToggleAudio} title="Alternar som">
-            {isMuted ? 'Som: Desativado' : 'Som: Ativado'}
-          </button>
-        </div>
-
         <div className="title-section">
           <span className="hero-badge">EDUCAÇÃO & ÉTICA DIGITAL</span>
           <h1 className="game-title">EduAI: Raciocínio vs IA</h1>

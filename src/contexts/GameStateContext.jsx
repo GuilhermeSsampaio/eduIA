@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import rawPhasesData from '../data/phases.json';
 
 const phasesData = rawPhasesData.phases || rawPhasesData;
@@ -8,13 +8,22 @@ const GameStateContext = createContext();
 export const useGameState = () => useContext(GameStateContext);
 
 export const GameStateProvider = ({ children }) => {
-  const [currentScreen, setCurrentScreen] = useState('start'); // 'start', 'game', 'report'
+  const [currentScreen, setCurrentScreen] = useState('start'); // 'start', 'game', 'report', 'credits'
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
   const [phaseStep, setPhaseStep] = useState('story'); // 'story', 'sources', 'quiz', 'feedback', 'moral'
   const [storyPageIndex, setStoryPageIndex] = useState(0);
   const [scores, setScores] = useState({ cognitive: 0, techDependence: 0 });
   const [playerAnswers, setPlayerAnswers] = useState([]);
   const [lastSelectedOption, setLastSelectedOption] = useState(null);
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const currentPhase = phasesData[currentPhaseIndex];
 
@@ -104,6 +113,8 @@ export const GameStateProvider = ({ children }) => {
       scores,
       playerAnswers,
       lastSelectedOption,
+      theme,
+      toggleTheme,
       startGame,
       nextStoryPage,
       prevStoryPage,
