@@ -12,13 +12,99 @@
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
+/* ===== Trava de viewport (prop lockViewport) — responsiva =====
+   Mobile  (< 768px): min-h-screen + overflow-y-auto + py-8 → a página cresce e rola
+   Desktop (≥ 768px): md:h-screen md:max-h-screen md:overflow-hidden md:py-0 → travada */
+
+/* Mobile (base) */
+html.viewport-locked body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: auto;
+}
+
+html.viewport-locked #root {
+  padding-top: var(--space-xl);      /* py-8 */
+  padding-bottom: var(--space-xl);
+}
+
+.screen-container.screen-locked {
+  padding: var(--space-lg) 20px;     /* menos padding lateral: conteúdo não fica espremido */
+  gap: var(--space-md);
+}
+
+.screen-locked .top-global-bar {
+  padding-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+/* Desktop (md) */
+@media (min-width: 768px) {
+  html.viewport-locked,
+  html.viewport-locked body {
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  html.viewport-locked #root {
+    padding-top: var(--space-md);    /* md:py-0 do container; mantém só o respiro do #root */
+    padding-bottom: var(--space-md);
+  }
+
+  .screen-container.screen-locked {
+    max-height: calc(100vh - 2 * var(--space-md));   /* desconta o padding do #root */
+    max-height: calc(100dvh - 2 * var(--space-md));
+    overflow: hidden;
+    padding: var(--space-lg) var(--space-xl);
+  }
+}
+
 .top-global-bar {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
   border-bottom: 1px dashed var(--border-color);
   padding-bottom: 12px;
+}
+
+.top-bar-left,
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botão discreto "< Voltar ao Menu" */
+.back-menu-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-retro);
+  font-size: 16px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: none;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.back-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--header-glow);
+  border-color: var(--border-color);
+  transform: none;
+  box-shadow: none;
+}
+
+.back-menu-btn:active {
+  transform: none;
+  box-shadow: none;
 }
 
 .top-bar-btn {

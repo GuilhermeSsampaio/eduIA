@@ -1,12 +1,15 @@
 import { useGameState } from '../contexts/GameStateContext';
 import { ScreenContainer } from '../components/layout/ScreenContainer';
 import { audioService } from '../services/AudioService';
+import logo from '../assets/logogame.png';
 import './StartScreen.css';
 
 export const StartScreen = () => {
   const { startGame, goToCredits } = useGameState();
 
   const handleStart = () => {
+    // Chamado de forma síncrona dentro do gesto do usuário (clique), o que
+    // satisfaz a política de Autoplay: o AudioContext é criado/retomado aqui.
     audioService.playClick();
     audioService.startBgm();
     startGame();
@@ -18,11 +21,19 @@ export const StartScreen = () => {
   };
 
   return (
-    <ScreenContainer>
+    // lockViewport: trava em 100vh sem scroll apenas nesta tela
+    <ScreenContainer className="start-screen" lockViewport>
       <div className="start-content fade-enter-active">
         <div className="title-section">
-          <span className="hero-badge">EDUCAÇÃO & ÉTICA DIGITAL</span>
-          <h1 className="game-title">EduAI: Raciocínio vs IA</h1>
+          <span className="hero-badge">CIDADANIA &amp; MUNDO DIGITAL</span>
+          <h1 className="game-title">
+            <img
+              src={logo}
+              alt="EduAI: Raciocínio vs IA"
+              className="game-logo"
+              draggable="false"
+            />
+          </h1>
           <p className="game-subtitle">Uma jornada interativa sobre autonomia, fontes reais e escolhas no mundo generativo</p>
         </div>
 
@@ -37,12 +48,13 @@ export const StartScreen = () => {
         </div>
 
         <div className="start-actions">
-          <button className="start-btn" onClick={handleStart}>
-            INICIAR JOGADA (6 FASES)
+          <button className="start-btn" onClick={handleStart} aria-label="Iniciar jogada, 6 fases">
+            <span className="start-btn-label">INICIAR JOGADA</span>
+            <span className="start-btn-sub">(6 FASES)</span>
           </button>
           
           <button className="credits-btn" onClick={handleCredits}>
-            CRÉDITOS DO JOGO
+            CREDITOS DO JOGO
           </button>
         </div>
       </div>

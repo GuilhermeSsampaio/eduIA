@@ -17,7 +17,8 @@ export const GameScreen = () => {
     goToQuizFromSources,
     submitAnswer,
     goToMoral,
-    nextPhase 
+    nextPhase,
+    resetGame
   } = useGameState();
 
   const handleNextStory = () => {
@@ -50,8 +51,24 @@ export const GameScreen = () => {
     nextPhase();
   };
 
+  const handleBackToMenu = () => {
+    audioService.playClick();
+    resetGame(); // volta para 'start' e zera pontos/progresso da rodada
+  };
+
+  const backButton = (
+    <button
+      className="back-menu-btn"
+      onClick={handleBackToMenu}
+      title="Voltar ao menu (o progresso da rodada será perdido)"
+      aria-label="Voltar ao menu"
+    >
+      &lt; Voltar ao Menu
+    </button>
+  );
+
   return (
-    <ScreenContainer>
+    <ScreenContainer topLeft={backButton}>
       {/* Top Header & Breadcrumb Progress */}
       <div className="phase-header">
         <div className="phase-badge">

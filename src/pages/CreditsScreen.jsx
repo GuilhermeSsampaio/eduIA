@@ -12,7 +12,7 @@ export const CreditsScreen = () => {
   };
 
   return (
-    <ScreenContainer>
+    <ScreenContainer className="credits-screen" lockViewport>
       <div className="credits-content fade-enter-active">
         <h2 className="credits-title">Créditos do Jogo</h2>
         

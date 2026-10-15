@@ -1,27 +1,31 @@
+/* A trava de viewport (sem scroll) vem da prop lockViewport do ScreenContainer */
+
 .credits-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 12px;               /* era 20px: título ↔ card ↔ botão */
   text-align: center;
+  min-height: 0;
 }
 
 .credits-title {
   font-family: var(--font-retro-bold);
-  font-size: 24px;
+  font-size: 22px;
   color: var(--header-glow);
   margin: 0;
+  line-height: 1.2;
 }
 
 .credits-card {
   background: var(--card-bg);
   border: 3px solid var(--header-glow);
   border-radius: 12px;
-  padding: 24px;
+  padding: 16px 20px;      /* era 24px */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 10px;               /* era 16px: autores ↔ caixa tracejada */
   box-shadow: 0 0 20px rgba(0, 255, 240, 0.15);
   width: 100%;
   box-sizing: border-box;
@@ -31,17 +35,29 @@
   background: var(--header-glow);
   color: var(--panel-bg);
   font-family: var(--font-retro-bold);
-  font-size: 11px;
-  padding: 4px 12px;
+  font-size: 10px;           /* reduzido no mobile para evitar quebras desnecessárias */
+  line-height: 1.5;          /* leading-normal: espaçamento adequado se quebrar */
+  padding: 6px 12px;         /* py-2: respiro vertical */
   border-radius: 12px;
   letter-spacing: 1px;
+  display: inline-block;
+  max-width: 90%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .credits-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
 }
 
 .authors-section h3 {
   font-family: var(--font-reading);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--warning-color);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .authors-list {
@@ -50,42 +66,49 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .authors-list li {
   font-family: var(--font-reading);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-main);
 }
 
 .credits-details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;                /* era 10px */
   text-align: left;
   background: rgba(0, 0, 0, 0.05);
-  padding: 16px;
+  padding: 12px;           /* era 16px (≈ p-3) */
   border-radius: 8px;
   border: 1px dashed var(--border-color);
 }
 
 .credits-details p {
   font-family: var(--font-reading);
-  font-size: 15px;
+  font-size: 14px;         /* era 15px (≈ text-sm) */
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.375;      /* era 1.5 (≈ leading-snug) */
 }
 
 .return-btn {
   background-color: var(--accent-color);
   color: #ffffff;
   font-family: var(--font-retro-bold);
-  font-size: 16px;
-  padding: 14px 28px;
+  font-size: clamp(9px, 2.8vw, 11px); /* reduzido no mobile para caber em 1 linha sem estourar */
+  line-height: 1.4;
+  padding: 12px 14px;
+  margin-top: 2px;
   border-radius: 8px;
   cursor: pointer;
   align-self: center;
+  white-space: nowrap;
+  width: 100%;
+  max-width: min(90%, 320px);         /* max-w-[90%] / max-w-xs: nunca vaza as bordas no celular */
+  box-sizing: border-box;
+  text-align: center;
   transition: transform 0.2s, background-color 0.2s;
   box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
   border: none;
@@ -94,4 +117,12 @@
 .return-btn:hover {
   transform: translateY(-2px);
   background-color: #d63031;
+}
+
+@media (min-width: 768px) {
+  .return-btn {
+    font-size: 16px;
+    padding: 12px 28px;
+    max-width: 380px;
+  }
 }

@@ -27,14 +27,19 @@ export const GameStateProvider = ({ children }) => {
 
   const currentPhase = phasesData[currentPhaseIndex];
 
-  const startGame = () => {
-    setCurrentScreen('game');
+  // Zera todo o progresso/pontuação da rodada atual
+  const resetRoundState = () => {
     setCurrentPhaseIndex(0);
     setPhaseStep('story');
     setStoryPageIndex(0);
     setScores({ cognitive: 0, techDependence: 0 });
     setPlayerAnswers([]);
     setLastSelectedOption(null);
+  };
+
+  const startGame = () => {
+    resetRoundState();
+    setCurrentScreen('game');
   };
 
   const nextStoryPage = () => {
@@ -94,6 +99,7 @@ export const GameStateProvider = ({ children }) => {
   };
 
   const resetGame = () => {
+    resetRoundState();
     setCurrentScreen('start');
   };
 

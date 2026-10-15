@@ -3,19 +3,38 @@ class AudioService {
     this.audioCtx = null;
     this.isMuted = false;
     this.bgmInterval = null;
+    this.bgmTimeouts = [];
     this.isPlayingBgm = false;
+    this.bgmSession = 0;
   }
 
+  /**
+   * Cria (lazy) e retoma o AudioContext.
+   * Deve ser chamado de dentro de um gesto do usuário (click/keydown) para
+   * respeitar a política de Autoplay dos navegadores. Nunca lança erro e nunca
+   * deixa Promises rejeitadas sem tratamento (evita warnings no console).
+   * @returns {Promise<boolean>} true se o contexto estiver rodando.
+   */
   initContext() {
     if (!this.audioCtx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) {
+      if (!AudioCtx) return Promise.resolve(false);
+      try {
         this.audioCtx = new AudioCtx();
+      } catch (e) {
+        console.warn('AudioContext indisponível', e);
+        return Promise.resolve(false);
       }
     }
-    if (this.audioCtx && this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
+
+    if (this.audioCtx.state === 'suspended') {
+      return this.audioCtx
+        .resume()
+        .then(() => this.audioCtx.state === 'running')
+        .catch(() => false); // Bloqueado pelo autoplay: falha silenciosa
     }
+
+    return Promise.resolve(this.audioCtx.state === 'running');
   }
 
   toggleMute() {
@@ -30,24 +49,30 @@ class AudioService {
 
   playTone(freq, type, duration, vol = 0.3) {
     if (this.isMuted) return;
+    // Sincronamente cria/retoma o contexto (precisa estar no gesto do usuário).
     this.initContext();
-    if (!this.audioCtx) return;
+    if (!this.audioCtx || this.audioCtx.state === 'closed') return;
 
     try {
+      const now = this.audioCtx.currentTime;
       const oscillator = this.audioCtx.createOscillator();
       const gainNode = this.audioCtx.createGain();
       
       oscillator.type = type;
-      oscillator.frequency.setValueAtTime(freq, this.audioCtx.currentTime);
+      oscillator.frequency.setValueAtTime(freq, now);
       
-      gainNode.gain.setValueAtTime(vol, this.audioCtx.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.0001, this.audioCtx.currentTime + duration);
+      gainNode.gain.setValueAtTime(vol, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration);
       
       oscillator.connect(gainNode);
       gainNode.connect(this.audioCtx.destination);
       
-      oscillator.start();
-      oscillator.stop(this.audioCtx.currentTime + duration);
+      oscillator.start(now);
+      oscillator.stop(now + duration);
+      oscillator.onended = () => {
+        oscillator.disconnect();
+        gainNode.disconnect();
+      };
     } catch (e) {
       console.warn("Audio play error", e);
     }
@@ -64,7 +89,6 @@ class AudioService {
 
   startBgm() {
     if (this.isPlayingBgm || this.isMuted) return;
-    this.initContext();
     this.isPlayingBgm = true;
 
     // Gentle retro ambient chord progression (Cmaj7 -> Am7 -> Fmaj7 -> G)
@@ -76,24 +100,45 @@ class AudioService {
     ];
 
     let step = 0;
-    this.bgmInterval = setInterval(() => {
+    const playChord = () => {
       if (this.isMuted || !this.isPlayingBgm) return;
       const currentChord = chordNotes[step % chordNotes.length];
       currentChord.forEach((freq, idx) => {
-        setTimeout(() => {
-          this.playTone(freq * 2, 'sine', 1.4, 0.18);
+        const t = setTimeout(() => {
+          this.bgmTimeouts = this.bgmTimeouts.filter((id) => id !== t);
+          if (this.isPlayingBgm && !this.isMuted) {
+            this.playTone(freq * 2, 'sine', 1.4, 0.18);
+          }
         }, idx * 250);
+        this.bgmTimeouts.push(t);
       });
       step++;
-    }, 2400);
+    };
+
+    // initContext() é chamado aqui de forma síncrona (dentro do clique);
+    // a trilha só começa quando o contexto estiver de fato rodando.
+    const session = ++this.bgmSession;
+    this.initContext().then((running) => {
+      if (session !== this.bgmSession) return; // start/stop mais recente venceu
+      if (!running || !this.isPlayingBgm || this.isMuted) {
+        // Autoplay bloqueado: libera para uma nova tentativa no próximo gesto.
+        if (!running) this.isPlayingBgm = false;
+        return;
+      }
+      playChord(); // Primeiro acorde imediato, junto com a transição de tela
+      this.bgmInterval = setInterval(playChord, 2400);
+    });
   }
 
   stopBgm() {
+    this.bgmSession++;
     this.isPlayingBgm = false;
     if (this.bgmInterval) {
       clearInterval(this.bgmInterval);
       this.bgmInterval = null;
     }
+    this.bgmTimeouts.forEach(clearTimeout);
+    this.bgmTimeouts = [];
   }
 }
 

@@ -1,46 +1,87 @@
+/* A trava de viewport (sem scroll) vem da prop lockViewport do ScreenContainer */
+
 .start-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 24px;               /* gap-6 no celular */
   text-align: center;
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .start-content {
+    gap: 16px;             /* md:gap-4 no desktop */
+  }
 }
 
 .hero-badge {
   background: rgba(0, 255, 240, 0.1);
   color: var(--header-glow);
   font-family: var(--font-retro-bold);
-  font-size: 12px;
-  padding: 6px 14px;
+  font-size: 11px;
+  line-height: 1.6;          /* leading-relaxed: evita que as linhas fiquem coladas ao quebrar */
+  padding: 8px 14px;         /* py-2: altura interna adequada para múltiplas linhas */
   border-radius: 20px;
   border: 1px solid var(--header-glow);
   letter-spacing: 1px;
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  max-width: 90%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-badge {
+    font-size: 12px;
+    padding: 6px 14px;
+    line-height: 1.5;
+  }
 }
 
 .game-title {
   font-family: var(--font-retro-bold);
   font-size: 32px;
   color: var(--text-main);
-  margin: 0 0 12px;
-  line-height: 1.2;
+  margin: 0 0 8px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.game-logo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 120px;         /* celular: tamanho fixo, a página rola */
+  object-fit: contain;
+  image-rendering: pixelated; /* mantém o pixel art nítido ao escalar */
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .game-logo {
+    height: 18vh;        /* desktop: encolhe em janelas baixas... */
+    max-height: 140px;   /* ...com teto de destaque em telas normais */
+    min-height: 80px;
+  }
 }
 
 .game-subtitle {
   font-family: var(--font-reading);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-muted);
   max-width: 600px;
   margin: 0 auto;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .instructions-card {
   background: var(--card-bg);
   border: 2px solid var(--card-border);
   border-radius: 10px;
-  padding: 20px 24px;
+  padding: 20px;           /* p-5 no celular */
   text-align: left;
   width: 100%;
   box-sizing: border-box;
@@ -48,9 +89,9 @@
 
 .instructions-card h3 {
   font-family: var(--font-reading);
-  font-size: 20px;
+  font-size: 18px;
   color: var(--warning-color);
-  margin: 0 0 14px;
+  margin: 0 0 10px;
 }
 
 .rules-list {
@@ -59,30 +100,58 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;               /* mais respiro para leitura no celular */
 }
 
 .rules-list li {
   font-family: var(--font-reading);
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-main);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .start-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   width: 100%;
+  margin-bottom: 16px;     /* mb-4 no celular: não cola na borda ao rolar */
+}
+
+@media (min-width: 768px) {
+  .instructions-card {
+    padding: 16px;         /* md:p-4 */
+  }
+
+  .instructions-card h3 {
+    margin-bottom: 8px;
+  }
+
+  .rules-list {
+    gap: 6px;
+  }
+
+  .rules-list li {
+    line-height: 1.35;
+  }
+
+  .start-actions {
+    margin-bottom: 0;
+  }
 }
 
 .start-btn {
   background: var(--accent-color);
   color: #ffffff;
   font-family: var(--font-retro-bold);
-  font-size: 18px;
-  padding: 16px 36px;
+  font-size: 16px;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
@@ -90,6 +159,17 @@
   border: none;
   width: 100%;
   max-width: 380px;
+}
+
+.start-btn-label {
+  line-height: 1.2;
+}
+
+.start-btn-sub {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.85;
+  letter-spacing: 1px;
 }
 
 .start-btn:hover {
@@ -103,7 +183,7 @@
   color: var(--warning-color);
   font-family: var(--font-retro-bold);
   font-size: 14px;
-  padding: 12px 24px;
+  padding: 10px 24px;
   border-radius: 8px;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
