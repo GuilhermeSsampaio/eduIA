@@ -21,11 +21,11 @@ export const StartScreen = () => {
   };
 
   return (
-    // lockViewport: trava em 100vh sem scroll apenas nesta tela
-    <ScreenContainer className="start-screen" lockViewport>
+    <ScreenContainer className="start-screen">
       <div className="start-content fade-enter-active">
         <div className="title-section">
-          <span className="hero-badge">CIDADANIA &amp; MUNDO DIGITAL</span>
+          <span className="hero-badge">  EDUCAÇÃO &amp; MUNDO DIGITAL</span>
+          {/* EDUCAÇÃO & ÉTICA DIGITAL */}
           <h1 className="game-title">
             <img
               src={logo}
