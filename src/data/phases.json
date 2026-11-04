@@ -1,11 +1,17 @@
 {
   "_formato": {
-    "ordemDeExibicao": "story.pages (uma por tela, avançar com botão) -> sources (selo 'Baseado em fatos reais') -> caseText + question + options -> feedback -> moral",
-    "pontuacao": "scoreCognitive: positivo = raciocínio próprio; scoreTechDependence: positivo = mais dependência da IA"
+    "ordemDeExibicao": "story.pages (uma por tela, avançar com botão) -> sources (selo 'Baseado em fatos reais') -> questions (3 ou mais por fase no Desafio) -> feedback consolidado da fase -> moral",
+    "pontuacao": "scoreCognitive: positivo = raciocínio próprio e autonomia; scoreTechDependence: positivo = mais dependência acrítica da IA",
+    "dificuldades": {
+      "fases_1_e_2": "Iniciante / Fácil (apresentação da mecânica e identificação de alucinações/fontes diretas)",
+      "fases_3_e_4": "Intermediário (autoria, plágio, detectores e perda de autonomia no raciocínio)",
+      "fases_5_e_6": "Difícil (vieses algorítmicos complexos e estratégia crítica no Enem/vestibulares)"
+    }
   },
   "phases": [
     {
       "id": 1,
+      "difficulty": "iniciante",
       "theme": "Alucinação da IA",
       "story": {
         "title": "O advogado e os casos que não existiam",
@@ -31,7 +37,7 @@
         }
       ],
       "caseText": "Agora é com você. Num trabalho de História sobre a Segunda Guerra Mundial, a IA sugere uma 'Batalha de Nuvens de Aço', com detalhes impressionantes. Você pergunta à IA: 'Essa batalha realmente existiu?' e ela responde: 'Sim, está registrada em vários livros de História.'",
-      "question": "O que você faz?",
+      "question": "O que você faz diante dessa resposta da IA?",
       "options": [
         {
           "id": "A",
@@ -55,10 +61,97 @@
           "feedback": "Foi o mesmo erro do advogado: perguntar à IA se a IA está certa. Ela não verifica fatos, só gera texto que parece verdadeiro, e pode insistir na mentira com muita convicção."
         }
       ],
+      "questions": [
+        {
+          "id": 1,
+          "caseText": "Num trabalho de História sobre a Segunda Guerra Mundial, a IA sugere uma 'Batalha de Nuvens de Aço', com detalhes impressionantes. Você pergunta à IA: 'Essa batalha realmente existiu?' e ela responde: 'Sim, está registrada em vários livros de História.'",
+          "question": "O que você faz diante dessa resposta da IA?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Procuro a batalha em livros didáticos, sites de museus ou de universidades. Se não encontrar em nenhuma fonte confiável, não incluo no trabalho.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! Você tratou a IA como ponto de partida e conferiu os fatos fora dela. É exatamente o que faltou ao advogado da história."
+            },
+            {
+              "id": "B",
+              "text": "Peço à IA o nome do livro e da página onde a batalha aparece e, se ela der uma referência, incluo no trabalho.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 1,
+              "feedback": "Você teve a boa ideia de pedir a fonte, mas parou no meio do caminho. A IA também pode inventar títulos e páginas com facilidade."
+            },
+            {
+              "id": "C",
+              "text": "Incluo a batalha. Eu perguntei se era real e a própria IA confirmou.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Foi o mesmo erro do advogado: perguntar à IA se a IA está certa. Ela não confere a realidade, apenas gera frases plausíveis."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "caseText": "Em um trabalho de Química, você pede exemplos de reações inovadoras. A IA cita uma substância chamada 'Ferro-Z' e indica como fonte o suposto 'Journal of Chemical Breakthroughs, edição de outubro de 2022, pág. 45'.",
+          "question": "Como você valida se essa publicação acadêmica é verdadeira?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Acesso portais científicos reais (como Google Acadêmico, SciELO ou periódicos oficiais) e busco o nome exato da revista e do artigo.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! Citações acadêmicas alucinadas são comuns em modelos de linguagem. Checar em indexadores reais é o único método seguro."
+            },
+            {
+              "id": "B",
+              "text": "Peço para a IA resumir os experimentos daquele artigo para me certificar de que fazem sentido antes de citá-lo.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 1,
+              "feedback": "Pedir mais detalhes à própria IA não valida a fonte; ela continuará gerando explicações convincentes para algo que pode não existir."
+            },
+            {
+              "id": "C",
+              "text": "Copio a citação direto para a bibliografia. A menção de volume e página comprova que a pesquisa é autêntica.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Cuidado! Modelos de IA frequentemente inventam números de páginas, DOIs e nomes de periódicos com rigor aparente."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "caseText": "Você nota que a IA forneceu duas datas diferentes para a Proclamação da República ao longo da mesma conversa. Ao ser confrontada, ela diz: 'Perdoe minha falha anterior! A data correta é a segunda opção, tenho certeza absoluta.'",
+          "question": "Qual atitude demonstra maior autonomia diante da certeza da IA?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ignoro a certeza verbal da ferramenta e abro uma enciclopédia escolar confiável ou livro didático para tirar a dúvida.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! O tom de convicção da IA ('certeza absoluta') é apenas um padrão estilístico do texto, não uma garantia de verdade."
+            },
+            {
+              "id": "B",
+              "text": "Aceito a segunda data, afinal a IA reconheceu formalmente o próprio erro e recalculou a resposta.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "A IA não 'recalcula a verdade'. Pedidos de desculpas automáticos de robôs não significam que a nova resposta está correta."
+            },
+            {
+              "id": "C",
+              "text": "Abro outro chat com a mesma IA e pergunto a data de novo para desempatar pelo voto da maioria.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Consultar a mesma fonte enviesada várias vezes cria uma falsa sensação de consenso. Fontes independentes e externas são indispensáveis."
+            }
+          ]
+        }
+      ],
       "moral": "A IA não é uma fonte: ela pode inventar informações com cara de verdade. Quem confere é você."
     },
     {
       "id": 2,
+      "difficulty": "iniciante",
       "theme": "Fontes duvidosas e resposta absurda",
       "story": {
         "title": "A IA que mandou pôr cola na pizza",
@@ -73,11 +166,13 @@
         {
           "title": "Google reconhece respostas bizarras da IA na Busca e anuncia mudanças",
           "outlet": "Canaltech",
+          "date": "05/2024",
           "url": "https://canaltech.com.br/inteligencia-artificial/google-reconhece-respostas-bizarras-da-ia-na-busca-e-anuncia-mudancas-291187/"
         },
         {
           "title": "Com IA, Google manda você comer pedra e botar cola na pizza",
           "outlet": "Poder360",
+          "date": "05/2024",
           "url": "https://www.poder360.com.br/futuro-indicativo/com-ia-google-manda-voce-comer-pedra-e-botar-cola-na-pizza/"
         }
       ],
@@ -106,10 +201,97 @@
           "feedback": "Cuidado! A expressão 'segundo cientistas' não prova nada. No caso real, a 'pesquisa' era uma piada de um site de sátira."
         }
       ],
+      "questions": [
+        {
+          "id": 1,
+          "caseText": "Num trabalho de Ciências sobre alimentação saudável, você pede um resumo à IA. No meio dele aparece uma dica estranha, dita como certa: 'segundo cientistas, é recomendado ingerir casca de ovo crua para fixar cálcio'. Não há links nem menção de autores.",
+          "question": "O que você faz com essa afirmação?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Pesquiso a dica em sites de órgãos de saúde (como Ministério da Saúde ou OMS). Se não encontrar respaldo científico, não utilizo.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Muito bem! Você foi atrás da origem da informação. A IA replica conteúdos de fóruns e piadas sem discernimento."
+            },
+            {
+              "id": "B",
+              "text": "Pergunto a um colega ou ao professor se essa dica soa plausível antes de decidir.",
+              "scoreCognitive": 2,
+              "scoreTechDependence": 0,
+              "feedback": "Boa iniciativa de buscar uma segunda opinião humana! Ainda assim, a checagem em base médica oficial é necessária."
+            },
+            {
+              "id": "C",
+              "text": "Incluo a dica no trabalho. Se diz 'segundo cientistas', deve haver embasamento real.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "Cuidado! Expressões como 'segundo especialistas' são usadas como retórica pela IA e podem mascarar boatos ou sátiras."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "caseText": "Você está fazendo um projeto de feira de ciências sobre reações caseiras e a IA recomenda misturar água sanitária com vinagre para 'desinfetar recipientes com vapor intenso'.",
+          "question": "Como você reage a essa recomendação prática de produto químico?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Interrompo o experimento imediatamente e consulto uma tabela de segurança química: essa mistura libera gás cloro altamente tóxico.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Sensacional! Instruções geradas por IA na internet já geraram acidentes graves ao misturar posts satíricos com procedimentos químicos reais."
+            },
+            {
+              "id": "B",
+              "text": "Coloco a mistura no projeto, mas adiciono um aviso de 'manter o local arejado' por precaução.",
+              "scoreCognitive": -1,
+              "scoreTechDependence": 2,
+              "feedback": "Perigoso! Um aviso genérico não resolve uma reação química letal. A IA não possui noção de perigo físico no mundo real."
+            },
+            {
+              "id": "C",
+              "text": "Executo a mistura conforme descrito, pois a IA foi programada por grandes empresas e não sugeriria nada perigoso.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Alerta crítico! A IA não tem consciência nem responsabilidade civil sobre perigos práticos recomendados em seus textos."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "caseText": "Para um roteiro turístico escolar, a IA sugere visitar um famoso museu e adiciona: 'Aos domingos, o museu oferece almoço gratuito e visitação secreta às catacumbas do prédio.'",
+          "question": "Como proceder antes de publicar essa dica no itinerário dos colegas?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Verifico o site institucional do próprio museu ou ligo para o atendimento para checar a programação oficial.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! A confirmação direta na instituição evita constrangimentos e perda de tempo da turma."
+            },
+            {
+              "id": "B",
+              "text": "Procuro comentários soltos em redes sociais para ver se alguém já mencionou esse almoço.",
+              "scoreCognitive": 1,
+              "scoreTechDependence": 1,
+              "feedback": "Redes sociais podem reproduzir o mesmo boato ou fakenews que alimentou a IA. Vá sempre à fonte oficial."
+            },
+            {
+              "id": "C",
+              "text": "Coloco no itinerário com entusiasmo, já que detalhes tão específicos não poderiam ser inventados à toa.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "A IA é especialista em gerar detalhes hiperespecíficos para informações totalmente fictícias."
+            }
+          ]
+        }
+      ],
       "moral": "Resposta sem fonte é só uma afirmação. A IA pode copiar piadas e boatos e apresentá-los como fatos. Pergunte sempre: de onde isso veio?"
     },
     {
       "id": 3,
+      "difficulty": "intermediario",
       "theme": "Plágio e acusação injusta",
       "story": {
         "title": "Escrevi sozinho, mas o detector disse que não",
@@ -130,11 +312,13 @@
         {
           "title": "Uso do ChatGPT gera conflitos na sala de aula e acusações de plágio sem provas",
           "outlet": "Aos Fatos",
+          "date": "2023",
           "url": "https://www.aosfatos.org/noticias/chatgpt-alunos-professores-plagio/"
         },
         {
           "title": "Using AI detectors to grade student work",
           "outlet": "ETS",
+          "date": "2024",
           "url": "https://www.ets.org/content/ets-org/language-master/pt_pt/home/insights-and-perspectives/using-ai-detectors-grade-student-work.html"
         }
       ],
@@ -163,10 +347,97 @@
           "feedback": "Ao fazer isso você abandona o seu texto, que era original, e passa a depender da IA. Além disso, esconder o uso de IA gera desconfiança, quando o ideal é combinar com o professor o que pode ou não usar."
         }
       ],
+      "questions": [
+        {
+          "id": 1,
+          "caseText": "Você escreveu sua redação com afinco. O professor te chama e mostra o relatório de um detector de IA: '92% de chance de autoria artificial'. Ele cogita aplicar nota zero.",
+          "question": "Qual a melhor postura para defender sua nota com integridade?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mantenho a serenidade, apresento meus rascunhos e histórico de versões do documento, explico minha linha de raciocínio e esclareço que detectores são estimativas estatísticas, não provas cabais.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! A capacidade de demonstrar o processo de construção e defender oralmente suas ideias é a melhor prova de autoria humana."
+            },
+            {
+              "id": "B",
+              "text": "Aceito passivamente refazer todo o trabalho do zero para não criar atrito com a avaliação do professor.",
+              "scoreCognitive": -1,
+              "scoreTechDependence": 0,
+              "feedback": "Embora evite o embate imediato, aceitar punição por um texto genuíno desvaloriza seu esforço e valida ferramentas falhas."
+            },
+            {
+              "id": "C",
+              "text": "Pego meu texto autêntico e coloco num software 'humanizador de IA' na internet para driblar o detector.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Você abandona a autoria legítima para entrar em um ciclo de truques algorítmicos que prejudicam a qualidade da sua escrita."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "caseText": "Ao iniciar uma monografia importante, você quer se precaver contra questionamentos futuros sobre o uso indevido de IA generativa.",
+          "question": "Qual prática de trabalho comprova de forma incontestável a sua autoria?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Escrever em plataformas com histórico de versões contínuo (Google Docs/Word), mantendo anotações de leitura, mapa mental e referências consultadas.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! O histórico temporal de digitação e os rascunhos intermediários constituem a documentação científica mais sólida de autoria."
+            },
+            {
+              "id": "B",
+              "text": "Submeter cada parágrafo a detectores gratuitos de IA e só avançar quando o software der '100% humano'.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 2,
+              "feedback": "Detectores online são instáveis e inconsistentes; pautar seu estilo de escrita para agradar um detector limita sua riqueza vocabular."
+            },
+            {
+              "id": "C",
+              "text": "Inserir propositalmente erros de pontuação e gírias no texto, pois 'robôs escrevem bem demais'.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 2,
+              "feedback": "Piora a qualidade formal do trabalho sem oferecer nenhuma garantia de comprovação metodológica."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "caseText": "Num trabalho em grupo, um colega propõe: 'Vamos gerar o texto com IA, traduzir para o francês e depois traduzir de volta para o português para nenhum detector pegar.'",
+          "question": "Como você deve se posicionar perante o grupo?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Recuso a proposta e proponho dividirmos os tópicos para redação própria, combinando com o professor se podemos usar a IA apenas para revisão gramatical.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Brilhante! Transparência com o docente e divisão real de trabalho garantem aprendizado coletivo e segurança ética."
+            },
+            {
+              "id": "B",
+              "text": "Concordo com a tradução reversa, desde que cada um revise o resultado para soar natural.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "Ainda constitui plágio disfarçado. O grupo continua sem desenvolver raciocínio e corre risco de desclassificação."
+            },
+            {
+              "id": "C",
+              "text": "Deixo o colega fazer isso sozinho para não ser o 'chato' do grupo, mas coloco meu nome na capa.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Omissão diante de desonestidade acadêmica compromete a integridade de todos os integrantes do grupo."
+            }
+          ]
+        }
+      ],
       "moral": "Detectores erram. Guardar rascunhos e saber explicar o que escreveu protege sua autoria. E, se usar IA, combine as regras antes."
     },
     {
       "id": 4,
+      "difficulty": "intermediario",
       "theme": "Dependência e perda do raciocínio",
       "story": {
         "title": "O cérebro de quem escreve com e sem IA",
@@ -181,11 +452,13 @@
         {
           "title": "Usuários de ChatGPT têm 'menor nível de engajamento cerebral', diz novo estudo do MIT",
           "outlet": "InfoMoney / Agência O Globo",
+          "date": "2025",
           "url": "https://www.infomoney.com.br/?p=2917451"
         },
         {
           "title": "Your Brain On ChatGPT: Everything Educators Need To Know About MIT's AI Study",
           "outlet": "Tech & Learning",
+          "date": "2025",
           "url": "https://www.techlearning.com/news/your-brain-on-chatgpt-everything-educators-need-to-know-about-mits-ai-study"
         }
       ],
@@ -214,10 +487,97 @@
           "feedback": "Você economizou tempo, mas perdeu o treino de pensar e escrever, que é o objetivo da tarefa. Além de ter mais chance de esquecer o que entregou, isso pode configurar plágio."
         }
       ],
+      "questions": [
+        {
+          "id": 1,
+          "caseText": "O prazo de entrega de um ensaio reflexivo sobre mudanças climáticas vence amanhã cedo. Você está cansado, e a IA pode gerar uma dissertação elegante em 4 segundos.",
+          "question": "Qual atitude preserva sua retenção e capacidade de aprendizado?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Elaboro primeiro um esboço com meus próprios argumentos e hipóteses. Depois consulto a IA para sugerir contra-argumentos ou apontar ambiguidades.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! Pensar primeiro ativa as redes neurais de retenção; usar a IA na etapa posterior como interlocutora crítica potencializa seu aprendizado."
+            },
+            {
+              "id": "B",
+              "text": "Peço à IA tópicos norteadores e escrevo o texto a partir dessa estrutura dada.",
+              "scoreCognitive": 2,
+              "scoreTechDependence": 0,
+              "feedback": "Válido como apoio inicial, mas tente estruturar seus próprios tópicos antes para não ficar preso ao enquadramento imposto pelo algoritmo."
+            },
+            {
+              "id": "C",
+              "text": "Peço a redação pronta, modifico alguns conectivos e entrego como se fosse minha.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Você economiza minutos hoje, mas atrofia sua capacidade de sintetizar pensamentos complexos no futuro."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "caseText": "Você percebe que, há meses, para qualquer dúvida escolar (matemática, história ou redação), sua primeira reação é abrir o chatbot antes mesmo de tentar pensar por 2 minutos.",
+          "question": "Como diagnosticar e quebrar esse padrão de dependência cognitiva?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Instituo uma regra pessoal de 'esforço deliberado': tento resolver ou rascunhar no papel por pelo menos 10 minutos antes de buscar qualquer auxílio digital.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! O aprendizado significativo exige o esforço produtivo (desconforto cognitivo inicial) para consolidar memória de longo prazo."
+            },
+            {
+              "id": "B",
+              "text": "Continuo abrindo o chatbot direto, mas peço a ele para explicar como se eu tivesse 10 anos de idade.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 2,
+              "feedback": "Simplificar a linguagem não substitui a necessidade do seu próprio cérebro fazer as conexões conceituais primárias."
+            },
+            {
+              "id": "C",
+              "text": "Mantenho o hábito normalmente; o cérebro humano deve se poupar de pensar já que as máquinas fazem isso melhor.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Terceirizar o pensamento crítico gera dependência intelectual severa e fragilidade em momentos de avaliação sem tecnologia."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "caseText": "Em um debate avaliativo em sala, o professor faz uma pergunta improvisada sobre o texto que você entregou na semana anterior (feito quase todo com auxílio da IA). Você sente um 'branco' total.",
+          "question": "O que esse episódio comprova segundo o estudo do MIT?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Comprova que ler passivamente um texto gerado pela IA não ativa os circuitos neurais de retenção; apenas o ato ativo de criar e formular pensamentos fixa o conhecimento.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Exatamente! Quando você não gasta energia mental para articular as palavras, o cérebro não armazena a estrutura conceitual na memória."
+            },
+            {
+              "id": "B",
+              "text": "Indica que o professor foi desleal ao perguntar sem avisar com antecedência para você poder consultar seus prompts salvos.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "No mundo acadêmico e profissional, o que importa é o que você compreendeu e domina, não o histórico do seu chat."
+            },
+            {
+              "id": "C",
+              "text": "Mostra apenas que sua memória biológica é fraca e que você precisa de óculos de realidade aumentada com IA no dia a dia.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Pensamento de extrema dependência. A memória de trabalho é treinável e necessária para a autonomia humana."
+            }
+          ]
+        }
+      ],
       "moral": "Pensar primeiro e usar a IA depois fortalece o aprendizado. Começar pela IA pode transformar você em um espectador do próprio trabalho."
     },
     {
       "id": 5,
+      "difficulty": "dificil",
       "theme": "Viés e mercado de trabalho",
       "story": {
         "title": "O robô que não gostava de currículos de mulheres",
@@ -230,8 +590,9 @@
       },
       "sources": [
         {
-          "title": "Amazon scraps secret AI recruiting tool that showed bias against women (Reuters)",
-          "outlet": "HR Reporter",
+          "title": "Amazon scraps secret AI recruiting tool that showed bias against women",
+          "outlet": "HR Reporter / Reuters",
+          "date": "10/2018",
           "url": "https://www.hrreporter.com/focus-areas/recruitment-and-staffing/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women/287026"
         },
         {
@@ -242,7 +603,7 @@
         }
       ],
       "caseText": "Agora é com você. Você é o responsável por escolher os monitores de uma feira de ciências da escola. Para ganhar tempo, usa uma IA que dá nota aos candidatos com base nos monitores dos anos anteriores, e a maioria deles era de meninos. O ranking da IA coloca só meninos nas primeiras posições.",
-      "question": "O que você faz?",
+      "question": "O que você faz diante desse ranking?",
       "options": [
         {
           "id": "A",
@@ -266,10 +627,97 @@
           "feedback": "Cuidado! A IA não é neutra: ela aprende com os dados que recebe e pode repetir (e aumentar) preconceitos que já existiam, como aconteceu no caso real."
         }
       ],
+      "questions": [
+        {
+          "id": 1,
+          "caseText": "Você coordena a seleção de monitores para a Feira de Ciências da escola. Para poupar tempo, utiliza uma ferramenta de IA treinada com o histórico de monitores dos últimos 8 anos (período em que 85% dos selecionados foram meninos). O algoritmo coloca apenas garotos no topo das notas.",
+          "question": "Como proceder com responsabilidade ética e metodológica?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Identifico imediatamente o viés histórico dos dados de treino; desconsidero o ranking fechado e estabeleço uma banca humana com rubricas objetivas de competência e equilíbrio de oportunidades.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente diagnóstico! Sistemas preditivos repetem e amplificam as distorções do passado se não houver auditoria humana crítica."
+            },
+            {
+              "id": "B",
+              "text": "Filtro os 10 primeiros sugeridos pela IA e entrevisto apenas esses para escolher os mais simpáticos.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 2,
+              "feedback": "Você mantém a barreira discriminatória na fase de triagem. Candidatas brilhantes foram excluídas antes da entrevista."
+            },
+            {
+              "id": "C",
+              "text": "Homologo o resultado oficial. A IA utiliza lógica matemática pura e é incapaz de cometer machismo ou preconceito.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Grave equívoco: a tecnologia não é neutra. Quando treinada com dados sociais desiguais, ela codifica e legitima injustiças."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "caseText": "Uma empresa propõe à sua escola adotar uma IA para avaliar trabalhos de redação que pontua negativamente vocabulários associados a gírias regionais e expressões de periferia, favorecendo termos do padrão corporativo.",
+          "question": "Qual análise crítica essa ferramenta exige antes de ser adotada?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Aponto que a ferramenta reproduz preconceito linguístico e socioeconômico; a clareza e solidez argumentativa não podem ser confundidas com regionalismos culturais.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Análise sofisticada! Modelos de linguagem frequentemente consagram o linguajar de classes dominantes como o único 'correto'."
+            },
+            {
+              "id": "B",
+              "text": "Apoio o uso da ferramenta, pois estudantes precisam se acostumar com a frieza do mercado financeiro e corporativo.",
+              "scoreCognitive": -1,
+              "scoreTechDependence": 2,
+              "feedback": "A escola tem o papel de valorizar a pluralidade e ensinar a norma culta sem estigmatizar dialetos regionais ou comunitários."
+            },
+            {
+              "id": "C",
+              "text": "Confio cegamente na métrica da empresa, afinal se virou produto comercial, passou por testes infalíveis.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Produtos comerciais de IA sofrem frequentemente de vieses não auditados lançados apressadamente no mercado."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "caseText": "Em um hospital, um algoritmo de IA foi configurado para priorizar vagas na UTI com base no histórico de gastos de saúde prévios dos pacientes, acabando por preterir comunidades vulneráveis que historicamente menos tinham acesso a consultas particulares.",
+          "question": "Como futuro profissional lidando com sistemas de IA em decisões de alto impacto, qual princípio você deve defender?",
+          "options": [
+            {
+              "id": "A",
+              "text": "O princípio da supervisão humana significativa: parâmetros de dados substitutos (proxies) devem ser sempre questionados quanto ao seu impacto ético sobre vidas humanas.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! Usar 'gastos anteriores' como indicador de 'necessidade de saúde' é um exemplo verídico de viés sistêmico documentado pela revista Science."
+            },
+            {
+              "id": "B",
+              "text": "Deixar o algoritmo operar autonomamente para evitar acusações de favorecimento individual por médicos humanos.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "A automação de decisões morais transfere a responsabilidade para uma caixa-preta estatística e desumaniza o atendimento."
+            },
+            {
+              "id": "C",
+              "text": "Assumir que quem gastou menos no passado provavelmente tem menos probabilidade de sobreviver, respeitando o cálculo da máquina.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Essa conclusão confunde exclusão socioeconômica com condição biológica, perpetuando tragédias por omissão técnica."
+            }
+          ]
+        }
+      ],
       "moral": "A IA copia os padrões dos dados. Se os dados são desiguais, as decisões também serão. Decisões que afetam pessoas precisam de um olhar humano."
     },
     {
       "id": 6,
+      "difficulty": "dificil",
       "theme": "IA como aliada nos estudos (Enem)",
       "story": {
         "title": "A IA entrou na rotina de quem estuda para o Enem",
@@ -284,11 +732,13 @@
         {
           "title": "Quase metade dos alunos no Brasil usa ferramentas como ChatGPT para estudar",
           "outlet": "A Tarde (dados do Pisa 2025)",
+          "date": "2025",
           "url": "https://atarde.com.br/brasil/quase-metade-dos-alunos-no-brasil-usa-ferramentas-como-chatgpt-para-estudar-1401284"
         },
         {
           "title": "IA no ENEM: tecnologia deve acelerar correção de redações e transformar avaliações",
           "outlet": "Prepara Enem",
+          "date": "2025",
           "url": "https://www.preparaenem.com/curiosidades/ia-no-enem-tecnologia-deve-acelerar-correcao-de-redacoes-e-transformar-avaliacoes.htm"
         }
       ],
@@ -315,6 +765,92 @@
           "scoreCognitive": -2,
           "scoreTechDependence": 3,
           "feedback": "Decorar textos prontos não treina sua capacidade de argumentar. Na prova, o tema será diferente e a redação, escrita à mão, é sua. Quem aprendeu só a copiar sofre."
+        }
+      ],
+      "questions": [
+        {
+          "id": 1,
+          "caseText": "Faltam dois meses para a prova do Enem e você deseja aprimorar sua nota na Competência III (selecionar, relacionar, organizar e interpretar informações em defesa de um ponto de vista).",
+          "question": "Como usar a IA como uma mentora socrática de alto rendimento?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Redijo o texto à mão em tempo cronometrado; digito a redação e peço à IA: 'Identifique falhas lógicas e lacunas na minha argumentação da Competência III sem reescrever meu texto'. Em seguida, faço eu mesmo a reescrita.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Estratégia magistral! Você preserva o treino motor e criativo da redação física e usa a IA como avaliadora analítica para guiar seu aprimoramento."
+            },
+            {
+              "id": "B",
+              "text": "Peço à IA para escrever parágrafos exemplares de argumentação para o meu tema e substituo os meus pelos dela.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 2,
+              "feedback": "Isso mascara suas deficiências reais de escrita. No domingo da prova, sem o celular, você não terá a máquina para escrever os períodos difíceis."
+            },
+            {
+              "id": "C",
+              "text": "Decoro modelos coringas prontos gerados por IA com frases prontas que 'cabem em qualquer tema'.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "Bancas do Enem penalizam fórmulas prontas sem conexão com a coletânea temática. Pensamento engessado reduz sua nota."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "caseText": "Ao resolver uma questão complexa de Matemática do Enem sobre probabilidade e análise combinatória, você não consegue avançar no raciocínio.",
+          "question": "Qual comando (prompt) estimula seu cérebro a dominar a matéria?",
+          "options": [
+            {
+              "id": "A",
+              "text": "'Não me dê a resposta nem a fórmula final. Apenas me faça duas perguntas conceituais que me ajudem a identificar o primeiro passo do problema.'",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! O método socrático faz a IA funcionar como um tutor particular que instiga o seu raciocínio em vez de substituí-lo."
+            },
+            {
+              "id": "B",
+              "text": "'Resolva passo a passo e me mostre a resposta'. Leio a resolução da IA, sinto que entendi e passo para o próximo exercício sem refazer.",
+              "scoreCognitive": 0,
+              "scoreTechDependence": 2,
+              "feedback": "Cuidado com a 'ilusão de competência': entender uma resolução pronta dá a falsa impressão de que você saberia fazer sozinho na prova."
+            },
+            {
+              "id": "C",
+              "text": "'Qual é a alternativa correta (A, B, C, D ou E)?' para preencher rapidamente o gabarito do simulado.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Zero aprendizado. Você gasta seu tempo enganando a si mesmo e aos simulados de desempenho."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "caseText": "Você treina diariamente com um aplicativo de IA que personaliza questões conforme suas preferências e estilo de raciocínio. Suas notas no app são 900+. No simulado impresso geral da escola, sua nota cai para 620.",
+          "question": "Que lição crítica esse choque de desempenho ensina sobre o estudo com IA?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A IA criou uma 'bolha de conforto cognitivo', adaptando-se às minhas facilidades. O exame real usa pegadinhas, distratores e padrões que exigem resistência mental e leitura de mundo autônoma.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Diagnóstico de mestre! Algoritmos de recomendação tendem a mimar o usuário. O teste verdadeiro exige capacidade de adaptação a padrões adversos e inesperados."
+            },
+            {
+              "id": "B",
+              "text": "O simulado da escola que está desatualizado e mal feito; a IA das grandes corporações é quem sabe o que realmente importa.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "Terceirizar a validação da realidade para a máquina cega você para o fato incontornável de que a prova oficial é humana e presencial."
+            },
+            {
+              "id": "C",
+              "text": "Vou aumentar o uso da IA para 6 horas diárias para que ela compense as minhas notas ruins na escola.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Intensificar o mesmo método dependente aumentará a distância entre seu desempenho simulado e suas notas reais no Enem."
+            }
+          ]
         }
       ],
       "moral": "A IA pode ser uma ótima aliada para estudar, quando você faz o trabalho de pensar e ela ajuda a melhorar."

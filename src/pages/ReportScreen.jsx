@@ -17,17 +17,17 @@ export const ReportScreen = () => {
   };
 
   const getProfile = () => {
-    if (scores.cognitive >= 18) {
+    if (scores.cognitive >= 50) {
       return {
         title: "Mestre do Raciocínio Crítico",
         badge: "AUTONOMIA MÁXIMA",
-        desc: "Impressionante! Você utiliza a IA como aliada mantendo total autonomia. Sempre verifica fontes fora da ferramenta, guarda rascunhos e não se deixa enganar por respostas convincentes."
+        desc: "Impressionante! Você utiliza a IA como aliada mantendo total autonomia intelectual. Sempre verifica fontes fora da ferramenta, guarda rascunhos e não se deixa seduzir por respostas fáceis ou convincentes."
       };
-    } else if (scores.cognitive >= 8) {
+    } else if (scores.cognitive >= 24) {
       return {
         title: "Estudante Consciencioso",
         badge: "BOM SENSO CRÍTICO",
-        desc: "Muito bem! Você demonstra autoria e pensamento analítico na maioria dos casos. Lembre-se de nunca perguntar à IA se ela própria está certa!"
+        desc: "Muito bem! Você demonstra autoria e pensamento analítico na grande maioria dos casos. Lembre-se sempre de nunca perguntar à IA se ela própria está certa e checar referências fora dela!"
       };
     } else if (scores.cognitive >= 0) {
       return {
@@ -39,7 +39,7 @@ export const ReportScreen = () => {
       return {
         title: "Dependente Tecnológico",
         badge: "ATENÇÃO NECESSÁRIA",
-        desc: "Cuidado! Você está terceirizando seu aprendizado e raciocínio para a máquina. A IA pode inventar fatos, reproduzir preconceitos e diminuir seu engajamento cerebral."
+        desc: "Cuidado! Você está terceirizando seu aprendizado e raciocínio para a máquina. A IA pode inventar fatos, reproduzir preconceitos e atrofiar seu engajamento cerebral."
       };
     }
   };
@@ -76,16 +76,23 @@ export const ReportScreen = () => {
         {/* History Breakdown */}
         {playerAnswers.length > 0 && (
           <div className="history-section">
-            <h4 className="history-title">Resumo das Escolhas por Fase</h4>
+            <h4 className="history-title">Resumo das Escolhas por Fase e Questão</h4>
             <div className="history-list">
               {playerAnswers.map((item, idx) => (
                 <div key={idx} className="history-card">
                   <div className="history-header">
-                    <span className="history-phase-num">Fase {idx + 1}</span>
+                    <span className="history-phase-num">
+                      Fase {item.phaseId} • Questão {(item.questionIndex ?? idx) + 1}
+                    </span>
                     <span className="history-phase-theme">{item.theme}</span>
                   </div>
+                  {item.questionText && (
+                    <p className="history-choice"><strong>Pergunta:</strong> {item.questionText}</p>
+                  )}
                   <p className="history-choice"><strong>Sua escolha ({item.optionId}):</strong> "{item.optionText}"</p>
-                  <p className="history-moral"><em>Moral: {item.moral}</em></p>
+                  {item.moral && (
+                    <p className="history-moral"><em>Moral: {item.moral}</em></p>
+                  )}
                 </div>
               ))}
             </div>
