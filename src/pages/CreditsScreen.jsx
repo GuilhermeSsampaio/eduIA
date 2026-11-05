@@ -4,11 +4,11 @@ import { audioService } from '../services/AudioService';
 import './CreditsScreen.css';
 
 export const CreditsScreen = () => {
-  const { resetGame } = useGameState();
+  const { returnToMenu } = useGameState();
 
   const handleReturn = () => {
     audioService.playClick();
-    resetGame();
+    returnToMenu();
   };
 
   return (

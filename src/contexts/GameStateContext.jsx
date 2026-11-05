@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import rawPhasesData from '../data/phases.json';
 
 const rawPhasesList = rawPhasesData.phases || rawPhasesData;
@@ -33,9 +33,8 @@ export const GameStateProvider = ({ children }) => {
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [phaseStep, setPhaseStep] = useState('story'); // 'story', 'sources', 'quiz', 'feedback', 'moral'
-  const [scores, setScores] = useState({ cognitive: 0, techDependence: 0 });
-  const [playerAnswers, setPlayerAnswers] = useState([]);
-  const [currentPhaseAnswers, setCurrentPhaseAnswers] = useState([]);
+  // userAnswers[phaseId][questionIndex] = answerRecord
+  const [userAnswers, setUserAnswers] = useState({});
   const [lastSelectedOption, setLastSelectedOption] = useState(null);
   const [theme, setTheme] = useState('dark');
 
@@ -51,20 +50,54 @@ export const GameStateProvider = ({ children }) => {
   const currentQuestion = currentPhase?.questions?.[currentQuestionIndex] || currentPhase?.questions?.[0] || null;
   const totalPhaseQuestions = currentPhase?.questions?.length || 0;
 
-  // Zera todo o progresso/pontuação da rodada atual
+  // Lista plana de todas as respostas dadas até o momento (ordenada por fase e questão)
+  const playerAnswers = useMemo(() => {
+    return phasesData.flatMap((phase) => {
+      const phaseMap = userAnswers[phase.id];
+      if (!phaseMap) return [];
+      return Object.keys(phaseMap)
+        .sort((a, b) => Number(a) - Number(b))
+        .map((qIdx) => phaseMap[qIdx]);
+    });
+  }, [userAnswers]);
+
+  // Respostas da fase atual (derivadas de userAnswers)
+  const currentPhaseAnswers = useMemo(() => {
+    if (!currentPhase || !userAnswers[currentPhase.id]) return [];
+    const phaseMap = userAnswers[currentPhase.id];
+    return Object.keys(phaseMap)
+      .sort((a, b) => Number(a) - Number(b))
+      .map((qIdx) => phaseMap[qIdx]);
+  }, [currentPhase, userAnswers]);
+
+  // Pontuação total derivada dinamicamente via .reduce() sobre userAnswers
+  const scores = useMemo(() => {
+    return playerAnswers.reduce(
+      (acc, ans) => ({
+        cognitive: acc.cognitive + (ans.scoreCognitive || 0),
+        techDependence: acc.techDependence + (ans.scoreTechDependence || 0)
+      }),
+      { cognitive: 0, techDependence: 0 }
+    );
+  }, [playerAnswers]);
+
+  // Zera todo o progresso/pontuação da rodada
   const resetRoundState = () => {
     setCurrentPhaseIndex(0);
     setCurrentQuestionIndex(0);
-    setCurrentPhaseAnswers([]);
     setPhaseStep('story');
-    setScores({ cognitive: 0, techDependence: 0 });
-    setPlayerAnswers([]);
+    setUserAnswers({});
     setLastSelectedOption(null);
   };
 
+  // Inicia ou retoma a jogada de onde o jogador parou
   const startGame = () => {
-    resetRoundState();
     setCurrentScreen('game');
+  };
+
+  // Volta ao Menu Inicial mantendo o progresso salvo em memória
+  const returnToMenu = () => {
+    setCurrentScreen('start');
   };
 
   const nextStoryPage = () => {
@@ -73,19 +106,12 @@ export const GameStateProvider = ({ children }) => {
 
   const goToQuizFromSources = () => {
     setCurrentQuestionIndex(0);
-    setCurrentPhaseAnswers([]);
     setPhaseStep('quiz');
   };
 
   const submitAnswer = (option) => {
     setLastSelectedOption(option);
-    
-    // Update scores
-    setScores(prev => ({
-      cognitive: prev.cognitive + option.scoreCognitive,
-      techDependence: prev.techDependence + option.scoreTechDependence
-    }));
-    
+
     const answerRecord = { 
       phaseId: currentPhase.id, 
       phaseTitle: currentPhase.story?.title || currentPhase.theme,
@@ -103,16 +129,19 @@ export const GameStateProvider = ({ children }) => {
       moral: currentPhase.moral
     };
 
-    // Save current phase answer and overall history
-    setCurrentPhaseAnswers(prev => [...prev, answerRecord]);
-    setPlayerAnswers(prev => [...prev, answerRecord]);
-    
-    // Check if there are more questions in this phase
+    // Sobrescreve a resposta de [phaseId][questionIndex] sem duplicar pontos
+    setUserAnswers(prev => ({
+      ...prev,
+      [currentPhase.id]: {
+        ...(prev[currentPhase.id] || {}),
+        [currentQuestionIndex]: answerRecord
+      }
+    }));
+
+    // Verifica se há mais questões nesta fase
     if (currentQuestionIndex < totalPhaseQuestions - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
-      // Continua no quiz para responder a próxima pergunta sem interrupção de feedback
     } else {
-      // Final da última pergunta da fase: abre o feedback consolidado
       setPhaseStep('feedback');
     }
   };
@@ -125,7 +154,6 @@ export const GameStateProvider = ({ children }) => {
     if (currentPhaseIndex + 1 < phasesData.length) {
       setCurrentPhaseIndex(prev => prev + 1);
       setCurrentQuestionIndex(0);
-      setCurrentPhaseAnswers([]);
       setPhaseStep('story');
       setLastSelectedOption(null);
     } else {
@@ -133,12 +161,30 @@ export const GameStateProvider = ({ children }) => {
     }
   };
 
+  const prevPhase = () => {
+    if (currentPhaseIndex > 0) {
+      const targetPhaseIndex = currentPhaseIndex - 1;
+      const targetPhase = phasesData[targetPhaseIndex];
+      const hasAnsweredTargetPhase =
+        targetPhase &&
+        userAnswers[targetPhase.id] &&
+        Object.keys(userAnswers[targetPhase.id]).length > 0;
+
+      setCurrentPhaseIndex(targetPhaseIndex);
+      setCurrentQuestionIndex(0);
+      setPhaseStep(hasAnsweredTargetPhase ? 'quiz' : 'story');
+      setLastSelectedOption(null);
+    }
+  };
+
+  // Reset total do jogo (chamado ao reiniciar do Relatório Final ou ao entrar nos Créditos)
   const resetGame = () => {
     resetRoundState();
     setCurrentScreen('start');
   };
 
   const goToCredits = () => {
+    resetRoundState();
     setCurrentScreen('credits');
   };
 
@@ -152,6 +198,7 @@ export const GameStateProvider = ({ children }) => {
       totalPhases: phasesData.length,
       totalPhaseQuestions,
       phaseStep,
+      userAnswers,
       scores,
       playerAnswers,
       currentPhaseAnswers,
@@ -159,11 +206,13 @@ export const GameStateProvider = ({ children }) => {
       theme,
       toggleTheme,
       startGame,
+      returnToMenu,
       nextStoryPage,
       goToQuizFromSources,
       submitAnswer,
       goToMoral,
       nextPhase,
+      prevPhase,
       resetGame,
       goToCredits
     }}>

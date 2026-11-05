@@ -24,7 +24,8 @@ export const GameScreen = () => {
     submitAnswer,
     goToMoral,
     nextPhase,
-    resetGame
+    prevPhase,
+    returnToMenu
   } = useGameState();
 
   const handleNextStory = () => {
@@ -54,19 +55,38 @@ export const GameScreen = () => {
 
   const handleBackToMenu = () => {
     audioService.playClick();
-    resetGame();
+    returnToMenu();
+  };
+
+  const handlePrevPhase = () => {
+    audioService.playClick();
+    prevPhase();
   };
 
   const backButton = (
-    <button
-      className="back-menu-btn"
-      onClick={handleBackToMenu}
-      title="Voltar ao menu (o progresso da rodada será perdido)"
-      aria-label="Voltar ao menu"
-    >
-      <span className="back-menu-icon" aria-hidden="true">&lt;</span>
-      <span>Voltar ao Menu</span>
-    </button>
+    <>
+      <button
+        className="back-menu-btn"
+        onClick={handleBackToMenu}
+        title="Voltar ao menu (seu progresso ficará salvo temporariamente)"
+        aria-label="Voltar ao menu"
+      >
+        <span className="back-menu-icon" aria-hidden="true">&lt;</span>
+        <span>Voltar ao Menu</span>
+      </button>
+
+      {currentPhaseIndex > 0 && (
+        <button
+          className="back-menu-btn prev-phase-btn"
+          onClick={handlePrevPhase}
+          title="Voltar para a fase anterior e refazer suas escolhas"
+          aria-label="Fase anterior"
+        >
+          <span className="back-menu-icon" aria-hidden="true">&lt;</span>
+          <span>Fase Anterior</span>
+        </button>
+      )}
+    </>
   );
 
   return (

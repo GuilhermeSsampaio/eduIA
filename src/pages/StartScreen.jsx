@@ -5,7 +5,7 @@ import logo from '../assets/logogame.png';
 import './StartScreen.css';
 
 export const StartScreen = () => {
-  const { startGame, goToCredits } = useGameState();
+  const { startGame, resetGame, goToCredits } = useGameState();
 
   const handleStart = () => {
     // Chamado de forma síncrona dentro do gesto do usuário (clique), o que
@@ -17,6 +17,7 @@ export const StartScreen = () => {
 
   const handleCredits = () => {
     audioService.playClick();
+    resetGame();
     goToCredits();
   };
 
