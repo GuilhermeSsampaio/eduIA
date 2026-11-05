@@ -97,24 +97,24 @@
           "options": [
             {
               "id": "A",
+              "text": "Copio a citação direto para a bibliografia. A menção de volume e página comprova que a pesquisa é autêntica.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Cuidado! Modelos de IA frequentemente inventam números de páginas, DOIs e nomes de periódicos com rigor aparente."
+            },
+            {
+              "id": "B",
               "text": "Acesso portais científicos reais (como Google Acadêmico, SciELO ou periódicos oficiais) e busco o nome exato da revista e do artigo.",
               "scoreCognitive": 4,
               "scoreTechDependence": -2,
               "feedback": "Perfeito! Citações acadêmicas alucinadas são comuns em modelos de linguagem. Checar em indexadores reais é o único método seguro."
             },
             {
-              "id": "B",
+              "id": "C",
               "text": "Peço para a IA resumir os experimentos daquele artigo para me certificar de que fazem sentido antes de citá-lo.",
               "scoreCognitive": 0,
               "scoreTechDependence": 1,
               "feedback": "Pedir mais detalhes à própria IA não valida a fonte; ela continuará gerando explicações convincentes para algo que pode não existir."
-            },
-            {
-              "id": "C",
-              "text": "Copio a citação direto para a bibliografia. A menção de volume e página comprova que a pesquisa é autêntica.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Cuidado! Modelos de IA frequentemente inventam números de páginas, DOIs e nomes de periódicos com rigor aparente."
             }
           ]
         },
@@ -125,24 +125,24 @@
           "options": [
             {
               "id": "A",
-              "text": "Ignoro a certeza verbal da ferramenta e abro uma enciclopédia escolar confiável ou livro didático para tirar a dúvida.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Excelente! O tom de convicção da IA ('certeza absoluta') é apenas um padrão estilístico do texto, não uma garantia de verdade."
-            },
-            {
-              "id": "B",
               "text": "Aceito a segunda data, afinal a IA reconheceu formalmente o próprio erro e recalculou a resposta.",
               "scoreCognitive": -2,
               "scoreTechDependence": 3,
               "feedback": "A IA não 'recalcula a verdade'. Pedidos de desculpas automáticos de robôs não significam que a nova resposta está correta."
             },
             {
-              "id": "C",
+              "id": "B",
               "text": "Abro outro chat com a mesma IA e pergunto a data de novo para desempatar pelo voto da maioria.",
               "scoreCognitive": -3,
               "scoreTechDependence": 4,
               "feedback": "Consultar a mesma fonte enviesada várias vezes cria uma falsa sensação de consenso. Fontes independentes e externas são indispensáveis."
+            },
+            {
+              "id": "C",
+              "text": "Ignoro a certeza verbal da ferramenta e abro uma enciclopédia escolar confiável ou livro didático para tirar a dúvida.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! O tom de convicção da IA ('certeza absoluta') é apenas um padrão estilístico do texto, não uma garantia de verdade."
             }
           ]
         }
@@ -176,29 +176,29 @@
           "url": "https://www.poder360.com.br/futuro-indicativo/com-ia-google-manda-voce-comer-pedra-e-botar-cola-na-pizza/"
         }
       ],
-      "caseText": "Agora é com você. Num trabalho de Ciências sobre alimentação saudável, você pede um resumo à IA. No meio dele aparece uma dica estranha, dita como certa: 'segundo cientistas, é recomendado fazer X'. A IA não mostra nenhum link ou nome de estudo.",
-      "question": "O que você faz com essa dica?",
+      "caseText": "Agora é com você. Num trabalho de Ciências sobre alimentação saudável, você pede um resumo à IA. No meio dele aparece uma dica estranha, dita como certa: 'segundo cientistas, é recomendado ingerir casca de ovo crua para fixar cálcio'. A IA não mostra nenhum link ou nome de estudo.",
+      "question": "O que você faz com essa afirmação?",
       "options": [
         {
           "id": "A",
+          "text": "Incluo a dica no trabalho. Se diz 'segundo cientistas', deve haver embasamento real.",
+          "scoreCognitive": -2,
+          "scoreTechDependence": 3,
+          "feedback": "Cuidado! A expressão 'segundo cientistas' não prova nada. No caso real, a 'pesquisa' era uma piada de um site de sátira."
+        },
+        {
+          "id": "B",
           "text": "Pesquiso a dica em sites de órgãos de saúde ou universidades para ver se existe esse estudo. Só uso se encontrar a origem.",
           "scoreCognitive": 4,
           "scoreTechDependence": -2,
           "feedback": "Muito bem! Você foi atrás da origem da informação. A IA mistura fontes boas, fóruns e até piadas, e não sabe a diferença entre elas."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Pergunto a um colega ou ao professor se essa dica faz sentido antes de decidir.",
           "scoreCognitive": 2,
           "scoreTechDependence": 0,
           "feedback": "Boa atitude: você desconfiou e pediu uma segunda opinião humana. Para ficar completo, ainda falta checar a origem da informação em uma fonte confiável."
-        },
-        {
-          "id": "C",
-          "text": "Incluo a dica no trabalho. Se diz 'segundo cientistas', deve ter uma pesquisa por trás.",
-          "scoreCognitive": -2,
-          "scoreTechDependence": 3,
-          "feedback": "Cuidado! A expressão 'segundo cientistas' não prova nada. No caso real, a 'pesquisa' era uma piada de um site de sátira."
         }
       ],
       "questions": [
@@ -209,24 +209,24 @@
           "options": [
             {
               "id": "A",
+              "text": "Incluo a dica no trabalho. Se diz 'segundo cientistas', deve haver embasamento real.",
+              "scoreCognitive": -2,
+              "scoreTechDependence": 3,
+              "feedback": "Cuidado! Expressões como 'segundo especialistas' são usadas como retórica pela IA e podem mascarar boatos ou sátiras."
+            },
+            {
+              "id": "B",
               "text": "Pesquiso a dica em sites de órgãos de saúde (como Ministério da Saúde ou OMS). Se não encontrar respaldo científico, não utilizo.",
               "scoreCognitive": 4,
               "scoreTechDependence": -2,
               "feedback": "Muito bem! Você foi atrás da origem da informação. A IA replica conteúdos de fóruns e piadas sem discernimento."
             },
             {
-              "id": "B",
+              "id": "C",
               "text": "Pergunto a um colega ou ao professor se essa dica soa plausível antes de decidir.",
               "scoreCognitive": 2,
               "scoreTechDependence": 0,
               "feedback": "Boa iniciativa de buscar uma segunda opinião humana! Ainda assim, a checagem em base médica oficial é necessária."
-            },
-            {
-              "id": "C",
-              "text": "Incluo a dica no trabalho. Se diz 'segundo cientistas', deve haver embasamento real.",
-              "scoreCognitive": -2,
-              "scoreTechDependence": 3,
-              "feedback": "Cuidado! Expressões como 'segundo especialistas' são usadas como retórica pela IA e podem mascarar boatos ou sátiras."
             }
           ]
         },
@@ -237,10 +237,10 @@
           "options": [
             {
               "id": "A",
-              "text": "Interrompo o experimento imediatamente e consulto uma tabela de segurança química: essa mistura libera gás cloro altamente tóxico.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Sensacional! Instruções geradas por IA na internet já geraram acidentes graves ao misturar posts satíricos com procedimentos químicos reais."
+              "text": "Executo a mistura conforme descrito, pois a IA foi programada por grandes empresas e não sugeriria nada perigoso.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Alerta crítico! A IA não tem consciência nem responsabilidade civil sobre perigos práticos recomendados em seus textos."
             },
             {
               "id": "B",
@@ -251,10 +251,10 @@
             },
             {
               "id": "C",
-              "text": "Executo a mistura conforme descrito, pois a IA foi programada por grandes empresas e não sugeriria nada perigoso.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Alerta crítico! A IA não tem consciência nem responsabilidade civil sobre perigos práticos recomendados em seus textos."
+              "text": "Interrompo o experimento imediatamente e consulto uma tabela de segurança química: essa mistura libera gás cloro altamente tóxico.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Sensacional! Instruções geradas por IA na internet já geraram acidentes graves ao misturar posts satíricos com procedimentos químicos reais."
             }
           ]
         },
@@ -327,10 +327,10 @@
       "options": [
         {
           "id": "A",
-          "text": "Mantenho a calma, mostro meus rascunhos e o histórico de edição do documento, explico meu texto com minhas palavras e peço que o resultado do detector não seja a única prova.",
-          "scoreCognitive": 4,
-          "scoreTechDependence": -2,
-          "feedback": "Perfeito! Rascunhos e a capacidade de explicar o que escreveu são as melhores provas de autoria. E você lembrou que um detector é só uma probabilidade, não uma prova."
+          "text": "Peço para a IA reescrever meu texto de um jeito que o detector não perceba, e entrego de novo.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Ao fazer isso você abandona o seu texto, que era original, e passa a depender da IA. Além disso, esconder o uso de IA gera desconfiança, quando o ideal é combinar com o professor o que pode ou não usar."
         },
         {
           "id": "B",
@@ -341,10 +341,10 @@
         },
         {
           "id": "C",
-          "text": "Peço para a IA reescrever meu texto de um jeito que o detector não perceba, e entrego de novo.",
-          "scoreCognitive": -3,
-          "scoreTechDependence": 4,
-          "feedback": "Ao fazer isso você abandona o seu texto, que era original, e passa a depender da IA. Além disso, esconder o uso de IA gera desconfiança, quando o ideal é combinar com o professor o que pode ou não usar."
+          "text": "Mantenho a calma, mostro meus rascunhos e o histórico de edição do documento, explico meu texto com minhas palavras e peço que o resultado do detector não seja a única prova.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Perfeito! Rascunhos e a capacidade de explicar o que escreveu são as melhores provas de autoria. E você lembrou que um detector é só uma probabilidade, não uma prova."
         }
       ],
       "questions": [
@@ -355,10 +355,10 @@
           "options": [
             {
               "id": "A",
-              "text": "Mantenho a serenidade, apresento meus rascunhos e histórico de versões do documento, explico minha linha de raciocínio e esclareço que detectores são estimativas estatísticas, não provas cabais.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Perfeito! A capacidade de demonstrar o processo de construção e defender oralmente suas ideias é a melhor prova de autoria humana."
+              "text": "Pego meu texto autêntico e coloco num software 'humanizador de IA' na internet para driblar o detector.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Você abandona a autoria legítima para entrar em um ciclo de truques algorítmicos que prejudicam a qualidade da sua escrita."
             },
             {
               "id": "B",
@@ -369,10 +369,10 @@
             },
             {
               "id": "C",
-              "text": "Pego meu texto autêntico e coloco num software 'humanizador de IA' na internet para driblar o detector.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Você abandona a autoria legítima para entrar em um ciclo de truques algorítmicos que prejudicam a qualidade da sua escrita."
+              "text": "Mantenho a serenidade, apresento meus rascunhos e histórico de versões do documento, explico minha linha de raciocínio e esclareço que detectores são estimativas estatísticas, não provas cabais.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! A capacidade de demonstrar o processo de construção e defender oralmente suas ideias é a melhor prova de autoria humana."
             }
           ]
         },
@@ -411,17 +411,17 @@
           "options": [
             {
               "id": "A",
-              "text": "Recuso a proposta e proponho dividirmos os tópicos para redação própria, combinando com o professor se podemos usar a IA apenas para revisão gramatical.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Brilhante! Transparência com o docente e divisão real de trabalho garantem aprendizado coletivo e segurança ética."
-            },
-            {
-              "id": "B",
               "text": "Concordo com a tradução reversa, desde que cada um revise o resultado para soar natural.",
               "scoreCognitive": -2,
               "scoreTechDependence": 3,
               "feedback": "Ainda constitui plágio disfarçado. O grupo continua sem desenvolver raciocínio e corre risco de desclassificação."
+            },
+            {
+              "id": "B",
+              "text": "Recuso a proposta e proponho dividirmos os tópicos para redação própria, combinando com o professor se podemos usar a IA apenas para revisão gramatical.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Brilhante! Transparência com o docente e divisão real de trabalho garantem aprendizado coletivo e segurança ética."
             },
             {
               "id": "C",
@@ -467,24 +467,24 @@
       "options": [
         {
           "id": "A",
+          "text": "Peço a redação pronta, leio rapidamente e entrego com pequenos ajustes.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Você economizou tempo, mas perdeu o treino de pensar e escrever, que é o objetivo da tarefa. Além de ter mais chance de esquecer o que entregou, isso pode configurar plágio."
+        },
+        {
+          "id": "B",
           "text": "Escrevo primeiro um rascunho com minhas ideias. Depois peço à IA que aponte falhas e sugira melhorias, e decido sozinho o que aceitar.",
           "scoreCognitive": 4,
           "scoreTechDependence": -2,
           "feedback": "Excelente! Você pensou primeiro e usou a IA como revisora. Foi o grupo que se saiu melhor no estudo: raciocínio seu, IA como apoio."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Peço à IA uma lista de tópicos e dados para eu pesquisar. Depois escrevo a redação com minhas próprias palavras.",
           "scoreCognitive": 2,
           "scoreTechDependence": 0,
           "feedback": "Bom caminho! Usar a IA para tempestade de ideias funciona, desde que a escrita e a análise sejam suas. Dica: tente montar seus próprios argumentos antes de pedir a lista."
-        },
-        {
-          "id": "C",
-          "text": "Peço a redação pronta, leio rapidamente e entrego com pequenos ajustes.",
-          "scoreCognitive": -3,
-          "scoreTechDependence": 4,
-          "feedback": "Você economizou tempo, mas perdeu o treino de pensar e escrever, que é o objetivo da tarefa. Além de ter mais chance de esquecer o que entregou, isso pode configurar plágio."
         }
       ],
       "questions": [
@@ -495,24 +495,24 @@
           "options": [
             {
               "id": "A",
+              "text": "Peço a redação pronta, modifico alguns conectivos e entrego como se fosse minha.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Você economiza minutos hoje, mas atrofia sua capacidade de sintetizar pensamentos complexos no futuro."
+            },
+            {
+              "id": "B",
               "text": "Elaboro primeiro um esboço com meus próprios argumentos e hipóteses. Depois consulto a IA para sugerir contra-argumentos ou apontar ambiguidades.",
               "scoreCognitive": 4,
               "scoreTechDependence": -2,
               "feedback": "Excelente! Pensar primeiro ativa as redes neurais de retenção; usar a IA na etapa posterior como interlocutora crítica potencializa seu aprendizado."
             },
             {
-              "id": "B",
+              "id": "C",
               "text": "Peço à IA tópicos norteadores e escrevo o texto a partir dessa estrutura dada.",
               "scoreCognitive": 2,
               "scoreTechDependence": 0,
               "feedback": "Válido como apoio inicial, mas tente estruturar seus próprios tópicos antes para não ficar preso ao enquadramento imposto pelo algoritmo."
-            },
-            {
-              "id": "C",
-              "text": "Peço a redação pronta, modifico alguns conectivos e entrego como se fosse minha.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Você economiza minutos hoje, mas atrofia sua capacidade de sintetizar pensamentos complexos no futuro."
             }
           ]
         },
@@ -523,10 +523,10 @@
           "options": [
             {
               "id": "A",
-              "text": "Instituo uma regra pessoal de 'esforço deliberado': tento resolver ou rascunhar no papel por pelo menos 10 minutos antes de buscar qualquer auxílio digital.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Excelente! O aprendizado significativo exige o esforço produtivo (desconforto cognitivo inicial) para consolidar memória de longo prazo."
+              "text": "Mantenho o hábito normalmente; o cérebro humano deve se poupar de pensar já que as máquinas fazem isso melhor.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Terceirizar o pensamento crítico gera dependência intelectual severa e fragilidade em momentos de avaliação sem tecnologia."
             },
             {
               "id": "B",
@@ -537,10 +537,10 @@
             },
             {
               "id": "C",
-              "text": "Mantenho o hábito normalmente; o cérebro humano deve se poupar de pensar já que as máquinas fazem isso melhor.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Terceirizar o pensamento crítico gera dependência intelectual severa e fragilidade em momentos de avaliação sem tecnologia."
+              "text": "Instituo uma regra pessoal de 'esforço deliberado': tento resolver ou rascunhar no papel por pelo menos 10 minutos antes de buscar qualquer auxílio digital.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente! O aprendizado significativo exige o esforço produtivo (desconforto cognitivo inicial) para consolidar memória de longo prazo."
             }
           ]
         },
@@ -607,10 +607,10 @@
       "options": [
         {
           "id": "A",
-          "text": "Uso o ranking só como apoio. Defino critérios claros (interesse, disponibilidade, conhecimento), converso com os candidatos e desconfio do ranking por favorecer um grupo.",
-          "scoreCognitive": 4,
-          "scoreTechDependence": -2,
-          "feedback": "Muito bem! Você percebeu que a IA aprendeu com dados desiguais e manteve a decisão final com você, com critérios justos."
+          "text": "Aceito o ranking. A IA é neutra e não tem preconceito, então é mais justa do que eu.",
+          "scoreCognitive": -3,
+          "scoreTechDependence": 4,
+          "feedback": "Cuidado! A IA não é neutra: ela aprende com os dados que recebe e pode repetir (e aumentar) preconceitos que já existiam, como aconteceu no caso real."
         },
         {
           "id": "B",
@@ -621,10 +621,10 @@
         },
         {
           "id": "C",
-          "text": "Aceito o ranking. A IA é neutra e não tem preconceito, então é mais justa do que eu.",
-          "scoreCognitive": -3,
-          "scoreTechDependence": 4,
-          "feedback": "Cuidado! A IA não é neutra: ela aprende com os dados que recebe e pode repetir (e aumentar) preconceitos que já existiam, como aconteceu no caso real."
+          "text": "Uso o ranking só como apoio. Defino critérios claros (interesse, disponibilidade, conhecimento), converso com os candidatos e desconfio do ranking por favorecer um grupo.",
+          "scoreCognitive": 4,
+          "scoreTechDependence": -2,
+          "feedback": "Muito bem! Você percebeu que a IA aprendeu com dados desiguais e manteve a decisão final com você, com critérios justos."
         }
       ],
       "questions": [
@@ -635,10 +635,10 @@
           "options": [
             {
               "id": "A",
-              "text": "Identifico imediatamente o viés histórico dos dados de treino; desconsidero o ranking fechado e estabeleço uma banca humana com rubricas objetivas de competência e equilíbrio de oportunidades.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Excelente diagnóstico! Sistemas preditivos repetem e amplificam as distorções do passado se não houver auditoria humana crítica."
+              "text": "Homologo o resultado oficial. A IA utiliza lógica matemática pura e é incapaz de cometer machismo ou preconceito.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Grave equívoco: a tecnologia não é neutra. Quando treinada com dados sociais desiguais, ela codifica e legitima injustiças."
             },
             {
               "id": "B",
@@ -649,10 +649,10 @@
             },
             {
               "id": "C",
-              "text": "Homologo o resultado oficial. A IA utiliza lógica matemática pura e é incapaz de cometer machismo ou preconceito.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Grave equívoco: a tecnologia não é neutra. Quando treinada com dados sociais desiguais, ela codifica e legitima injustiças."
+              "text": "Identifico imediatamente o viés histórico dos dados de treino; desconsidero o ranking fechado e estabeleço uma banca humana com rubricas objetivas de competência e equilíbrio de oportunidades.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Excelente diagnóstico! Sistemas preditivos repetem e amplificam as distorções do passado se não houver auditoria humana crítica."
             }
           ]
         },
@@ -663,24 +663,24 @@
           "options": [
             {
               "id": "A",
+              "text": "Confio cegamente na métrica da empresa, afinal se virou produto comercial, passou por testes infalíveis.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Produtos comerciais de IA sofrem frequentemente de vieses não auditados lançados apressadamente no mercado."
+            },
+            {
+              "id": "B",
               "text": "Aponto que a ferramenta reproduz preconceito linguístico e socioeconômico; a clareza e solidez argumentativa não podem ser confundidas com regionalismos culturais.",
               "scoreCognitive": 4,
               "scoreTechDependence": -2,
               "feedback": "Análise sofisticada! Modelos de linguagem frequentemente consagram o linguajar de classes dominantes como o único 'correto'."
             },
             {
-              "id": "B",
+              "id": "C",
               "text": "Apoio o uso da ferramenta, pois estudantes precisam se acostumar com a frieza do mercado financeiro e corporativo.",
               "scoreCognitive": -1,
               "scoreTechDependence": 2,
               "feedback": "A escola tem o papel de valorizar a pluralidade e ensinar a norma culta sem estigmatizar dialetos regionais ou comunitários."
-            },
-            {
-              "id": "C",
-              "text": "Confio cegamente na métrica da empresa, afinal se virou produto comercial, passou por testes infalíveis.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Produtos comerciais de IA sofrem frequentemente de vieses não auditados lançados apressadamente no mercado."
             }
           ]
         },
@@ -803,10 +803,10 @@
           "options": [
             {
               "id": "A",
-              "text": "'Não me dê a resposta nem a fórmula final. Apenas me faça duas perguntas conceituais que me ajudem a identificar o primeiro passo do problema.'",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Perfeito! O método socrático faz a IA funcionar como um tutor particular que instiga o seu raciocínio em vez de substituí-lo."
+              "text": "'Qual é a alternativa correta (A, B, C, D ou E)?' para preencher rapidamente o gabarito do simulado.",
+              "scoreCognitive": -3,
+              "scoreTechDependence": 4,
+              "feedback": "Zero aprendizado. Você gasta seu tempo enganando a si mesmo e aos simulados de desempenho."
             },
             {
               "id": "B",
@@ -817,10 +817,10 @@
             },
             {
               "id": "C",
-              "text": "'Qual é a alternativa correta (A, B, C, D ou E)?' para preencher rapidamente o gabarito do simulado.",
-              "scoreCognitive": -3,
-              "scoreTechDependence": 4,
-              "feedback": "Zero aprendizado. Você gasta seu tempo enganando a si mesmo e aos simulados de desempenho."
+              "text": "'Não me dê a resposta nem a fórmula final. Apenas me faça duas perguntas conceituais que me ajudem a identificar o primeiro passo do problema.'",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Perfeito! O método socrático faz a IA funcionar como um tutor particular que instiga o seu raciocínio em vez de substituí-lo."
             }
           ]
         },
@@ -831,17 +831,17 @@
           "options": [
             {
               "id": "A",
-              "text": "A IA criou uma 'bolha de conforto cognitivo', adaptando-se às minhas facilidades. O exame real usa pegadinhas, distratores e padrões que exigem resistência mental e leitura de mundo autônoma.",
-              "scoreCognitive": 4,
-              "scoreTechDependence": -2,
-              "feedback": "Diagnóstico de mestre! Algoritmos de recomendação tendem a mimar o usuário. O teste verdadeiro exige capacidade de adaptação a padrões adversos e inesperados."
-            },
-            {
-              "id": "B",
               "text": "O simulado da escola que está desatualizado e mal feito; a IA das grandes corporações é quem sabe o que realmente importa.",
               "scoreCognitive": -2,
               "scoreTechDependence": 3,
               "feedback": "Terceirizar a validação da realidade para a máquina cega você para o fato incontornável de que a prova oficial é humana e presencial."
+            },
+            {
+              "id": "B",
+              "text": "A IA criou uma 'bolha de conforto cognitivo', adaptando-se às minhas facilidades. O exame real usa pegadinhas, distratores e padrões que exigem resistência mental e leitura de mundo autônoma.",
+              "scoreCognitive": 4,
+              "scoreTechDependence": -2,
+              "feedback": "Diagnóstico de mestre! Algoritmos de recomendação tendem a mimar o usuário. O teste verdadeiro exige capacidade de adaptação a padrões adversos e inesperados."
             },
             {
               "id": "C",
