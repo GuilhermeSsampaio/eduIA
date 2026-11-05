@@ -33,7 +33,6 @@ export const GameStateProvider = ({ children }) => {
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [phaseStep, setPhaseStep] = useState('story'); // 'story', 'sources', 'quiz', 'feedback', 'moral'
-  const [storyPageIndex, setStoryPageIndex] = useState(0);
   const [scores, setScores] = useState({ cognitive: 0, techDependence: 0 });
   const [playerAnswers, setPlayerAnswers] = useState([]);
   const [currentPhaseAnswers, setCurrentPhaseAnswers] = useState([]);
@@ -58,7 +57,6 @@ export const GameStateProvider = ({ children }) => {
     setCurrentQuestionIndex(0);
     setCurrentPhaseAnswers([]);
     setPhaseStep('story');
-    setStoryPageIndex(0);
     setScores({ cognitive: 0, techDependence: 0 });
     setPlayerAnswers([]);
     setLastSelectedOption(null);
@@ -70,17 +68,7 @@ export const GameStateProvider = ({ children }) => {
   };
 
   const nextStoryPage = () => {
-    if (currentPhase && storyPageIndex < currentPhase.story.pages.length - 1) {
-      setStoryPageIndex(prev => prev + 1);
-    } else {
-      setPhaseStep('sources');
-    }
-  };
-
-  const prevStoryPage = () => {
-    if (storyPageIndex > 0) {
-      setStoryPageIndex(prev => prev - 1);
-    }
+    setPhaseStep('sources');
   };
 
   const goToQuizFromSources = () => {
@@ -139,7 +127,6 @@ export const GameStateProvider = ({ children }) => {
       setCurrentQuestionIndex(0);
       setCurrentPhaseAnswers([]);
       setPhaseStep('story');
-      setStoryPageIndex(0);
       setLastSelectedOption(null);
     } else {
       setCurrentScreen('report');
@@ -165,8 +152,6 @@ export const GameStateProvider = ({ children }) => {
       totalPhases: phasesData.length,
       totalPhaseQuestions,
       phaseStep,
-      storyPageIndex,
-      totalStoryPages: currentPhase?.story?.pages?.length || 0,
       scores,
       playerAnswers,
       currentPhaseAnswers,
@@ -175,7 +160,6 @@ export const GameStateProvider = ({ children }) => {
       toggleTheme,
       startGame,
       nextStoryPage,
-      prevStoryPage,
       goToQuizFromSources,
       submitAnswer,
       goToMoral,

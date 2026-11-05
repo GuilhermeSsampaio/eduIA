@@ -18,11 +18,8 @@ export const GameScreen = () => {
     totalPhases,
     totalPhaseQuestions,
     phaseStep,
-    storyPageIndex,
-    totalStoryPages,
     currentPhaseAnswers,
     nextStoryPage,
-    prevStoryPage,
     goToQuizFromSources,
     submitAnswer,
     goToMoral,
@@ -33,11 +30,6 @@ export const GameScreen = () => {
   const handleNextStory = () => {
     audioService.playClick();
     nextStoryPage();
-  };
-
-  const handlePrevStory = () => {
-    audioService.playClick();
-    prevStoryPage();
   };
 
   const handleGoToQuiz = () => {
@@ -72,7 +64,8 @@ export const GameScreen = () => {
       title="Voltar ao menu (o progresso da rodada será perdido)"
       aria-label="Voltar ao menu"
     >
-      &lt; Voltar ao Menu
+      <span className="back-menu-icon" aria-hidden="true">&lt;</span>
+      <span>Voltar ao Menu</span>
     </button>
   );
 
@@ -89,9 +82,6 @@ export const GameScreen = () => {
       {phaseStep === 'story' && (
         <StoryStep 
           story={currentPhase.story}
-          storyPageIndex={storyPageIndex}
-          totalStoryPages={totalStoryPages}
-          onPrev={handlePrevStory}
           onNext={handleNextStory}
         />
       )}

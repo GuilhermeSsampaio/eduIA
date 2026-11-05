@@ -13,21 +13,22 @@ export const SourcesStep = ({
 
       <div className="sources-list">
         {sources?.map((src, index) => (
-          <div key={index} className="source-card">
+          <a
+            key={index}
+            href={src.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="source-card"
+          >
             <div className="source-meta">
               <span className="outlet-badge">{src.outlet}</span>
               {src.date && <span className="date-badge">{src.date}</span>}
             </div>
             <h4 className="source-title">{src.title}</h4>
-            <a 
-              href={src.url} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="source-link"
-            >
+            <span className="source-link">
               Ler matéria original
-            </a>
-          </div>
+            </span>
+          </a>
         ))}
       </div>
 
@@ -37,4 +38,3 @@ export const SourcesStep = ({
     </div>
   );
 };
-

@@ -65,9 +65,10 @@ html.viewport-locked #root {
 .top-global-bar {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;            /* flex-wrap: evita esmagar botões no mobile */
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 8px;                   /* gap-2 */
   border-bottom: 1px dashed var(--border-color);
   padding-bottom: 12px;
 }
@@ -75,31 +76,51 @@ html.viewport-locked #root {
 .top-bar-left,
 .top-bar-right {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 8px;                   /* gap-2 */
 }
 
-/* Botão discreto "< Voltar ao Menu" */
+/* Botão interativo "< Voltar ao Menu" */
 .back-menu-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
   font-family: var(--font-retro);
-  font-size: 16px;
-  padding: 4px 10px;
-  border-radius: 12px;
+  font-size: 14px;            /* text-xs no mobile */
+  padding: 4px 8px;           /* px-2 py-1 no mobile */
+  border-radius: 6px;         /* rounded-md */
   cursor: pointer;
   box-shadow: none;
-  white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;        /* whitespace-nowrap */
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.back-menu-icon {
+  font-family: var(--font-retro-bold);
+  font-size: 10px;
+  color: var(--header-glow);
+  line-height: 1;
+  transition: transform 0.2s ease;
 }
 
 .back-menu-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: #1e293b;        /* hover:bg-slate-800 */
   color: var(--header-glow);
-  border-color: var(--border-color);
+  border-color: var(--header-glow);
   transform: none;
   box-shadow: none;
+}
+
+[data-theme="light"] .back-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+.back-menu-btn:hover .back-menu-icon {
+  transform: translateX(-2px);
 }
 
 .back-menu-btn:active {
@@ -112,11 +133,12 @@ html.viewport-locked #root {
   border: 1px solid var(--border-color);
   color: var(--header-glow);
   font-family: var(--font-retro);
-  font-size: 16px;
-  padding: 4px 12px;
+  font-size: 14px;            /* text-xs no mobile */
+  padding: 4px 8px;           /* px-2 py-1 no mobile */
   border-radius: 12px;
   cursor: pointer;
   box-shadow: none;
+  white-space: nowrap;        /* whitespace-nowrap */
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
@@ -124,4 +146,27 @@ html.viewport-locked #root {
   background: rgba(0, 255, 240, 0.1);
   border-color: var(--header-glow);
   transform: none;
+}
+
+@media (min-width: 768px) {
+  .top-global-bar,
+  .top-bar-left,
+  .top-bar-right {
+    gap: 10px;
+  }
+
+  .back-menu-btn {
+    font-size: 17px;          /* md:text-sm */
+    padding: 6px 12px;        /* md:px-3 md:py-2 */
+    gap: 6px;
+  }
+
+  .back-menu-icon {
+    font-size: 12px;
+  }
+
+  .top-bar-btn {
+    font-size: 17px;          /* md:text-sm */
+    padding: 6px 12px;        /* md:px-3 md:py-2 */
+  }
 }
