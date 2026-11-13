@@ -17,10 +17,16 @@ export const CreditsScreen = () => {
         <h2 className="credits-title">Créditos do Jogo</h2>
         
         <div className="credits-card">
-          <span className="credits-badge">PROJETO SGDD - EDUAI</span>
+          <span className="credits-badge">UFGD • TÓPICOS AVANÇADOS EM COMPUTAÇÃO I</span>
           
+          <div className="credits-academic">
+            <p><strong>Instituição:</strong> Universidade Federal da Grande Dourados (UFGD)</p>
+            <p><strong>Disciplina:</strong> Tópicos Avançados em Computação I</p>
+            <p><strong>Docente:</strong> Prof.ª Valguima Odakura</p>
+          </div>
+
           <div className="authors-section">
-            <h3>Autores e Desenvolvedores:</h3>
+            <h3>Desenvolvedores:</h3>
             <ul className="authors-list">
               <li><strong>Guilherme Silva Sampaio</strong></li>
               <li><strong>Pedro Henrique Gonçalves Mota</strong></li>
@@ -28,6 +34,7 @@ export const CreditsScreen = () => {
           </div>
 
           <div className="credits-details">
+            <p><strong>Projeto:</strong> SGDD - EduAI (Raciocínio vs IA)</p>
             <p><strong>Objetivo Pedagógico:</strong> Proporcionar uma jornada de tomada de decisão e conscientização sobre ética, autoria e uso crítico da IA Generativa na Educação.</p>
             <p><strong>Arte e Interface:</strong> Estética retrô inspirada em Pixel Art, construída inteiramente com CSS (bordas, sombras, cores e animações), sem o uso de imagens ou assets gráficos de terceiros.</p>
             <p><strong>Som e Música:</strong> Desenvolvido inteiramente com a Web Audio API (trilha ambiente, efeitos sonoros e controle de Mute/Unmute), sem o uso de arquivos de áudio externos.</p>

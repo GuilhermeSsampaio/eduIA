@@ -53,6 +53,26 @@
   }
 }
 
+.credits-academic {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  font-family: var(--font-reading);
+  font-size: 14px;
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.03);
+  padding: 8px 12px;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.credits-academic p {
+  margin: 0;
+  line-height: 1.4;
+}
+
 .authors-section h3 {
   font-family: var(--font-reading);
   font-size: 16px;
