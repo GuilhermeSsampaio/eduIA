@@ -1,0 +1,196 @@
+.score-hud {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.35);
+  margin-top: -8px;
+}
+
+@media (min-width: 640px) {
+  .score-hud {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 10px 16px;
+  }
+}
+
+.score-hud-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 300ms ease, box-shadow 300ms ease, background-color 300ms ease;
+}
+
+[data-theme="light"] .score-hud-meter {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.score-hud-meter.cognitive.pulse {
+  border-color: #00fff0;
+  background: rgba(0, 255, 240, 0.12);
+  box-shadow: 0 0 14px rgba(0, 255, 240, 0.35);
+}
+
+.score-hud-meter.dependence.pulse {
+  border-color: #e94560;
+  background: rgba(233, 69, 96, 0.14);
+  box-shadow: 0 0 14px rgba(233, 69, 96, 0.35);
+}
+
+.score-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.score-hud-label {
+  font-family: var(--font-retro-bold);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .score-hud-label {
+    font-size: 10px;
+  }
+}
+
+.score-hud-meter.cognitive .score-hud-label {
+  color: #2dd4bf;
+}
+
+.score-hud-meter.dependence .score-hud-label {
+  color: #fb7185;
+}
+
+[data-theme="light"] .score-hud-meter.cognitive .score-hud-label {
+  color: #0d9488;
+}
+
+[data-theme="light"] .score-hud-meter.dependence .score-hud-label {
+  color: #d63031;
+}
+
+.score-hud-values {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.score-hud-pts {
+  font-family: var(--font-retro);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-main);
+}
+
+.score-hud-delta {
+  font-family: var(--font-retro-bold);
+  font-size: 9px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  line-height: 1;
+  animation: score-hud-pop 700ms ease-out forwards;
+}
+
+.score-hud-delta.good {
+  background: rgba(16, 185, 129, 0.2);
+  color: #4cd137;
+  border: 1px solid #4cd137;
+}
+
+.score-hud-delta.bad {
+  background: rgba(233, 69, 96, 0.2);
+  color: #ff6b81;
+  border: 1px solid #e94560;
+}
+
+[data-theme="light"] .score-hud-delta.good {
+  color: #0d9488;
+  border-color: #0d9488;
+}
+
+[data-theme="light"] .score-hud-delta.bad {
+  color: #d63031;
+  border-color: #d63031;
+}
+
+.score-hud-track {
+  position: relative;
+  height: 14px;
+  width: 100%;
+  background: #0b1020;
+  border: 2px solid var(--border-color);
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+[data-theme="light"] .score-hud-track {
+  background: #dfe6e9;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.score-hud-fill {
+  height: 100%;
+  min-width: 0;
+  transition: all 500ms ease;
+  position: relative;
+}
+
+/* Segmentação estilo pixel art sobre a barra */
+.score-hud-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 8px,
+    rgba(0, 0, 0, 0.25) 8px,
+    rgba(0, 0, 0, 0.25) 10px
+  );
+  pointer-events: none;
+}
+
+.score-hud-fill.cognitive {
+  background: linear-gradient(90deg, #10b981 0%, #00fff0 100%);
+  box-shadow: 0 0 10px rgba(0, 255, 240, 0.45);
+}
+
+.score-hud-fill.dependence {
+  background: linear-gradient(90deg, #f97316 0%, #e94560 100%);
+  box-shadow: 0 0 10px rgba(233, 69, 96, 0.45);
+}
+
+@keyframes score-hud-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.85);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.08);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.95);
+  }
+}

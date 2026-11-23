@@ -46,6 +46,9 @@ export const StartScreen = () => {
             <li><strong>Desafio Prático:</strong> Tome decisões em dilemas do seu dia a dia.</li>
             <li><strong>Diagnóstico:</strong> Avalie seu Raciocínio Próprio vs Dependência de IA.</li>
           </ul>
+          <p className="impact-notice" role="note">
+            <strong>Atenção:</strong> cada decisão tomada durante as fases altera seus indicadores em tempo real e define o diagnóstico do seu perfil digital no final.
+          </p>
         </div>
 
         <div className="start-actions">

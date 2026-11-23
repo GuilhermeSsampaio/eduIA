@@ -1,9 +1,21 @@
+import { Fragment } from 'react';
+
+const STEP_ITEMS = [
+  { key: 'story', label: '1. História' },
+  { key: 'sources', label: '2. Fontes' },
+  { key: 'quiz', label: '3. Desafio' },
+  { key: 'feedback', label: '4. Feedback' },
+  { key: 'moral', label: '5. Moral' }
+];
+
 export const PhaseHeader = ({ 
   currentPhaseIndex, 
   totalPhases, 
   theme, 
   difficulty,
-  phaseStep 
+  phaseStep,
+  maxReachedStepIndex = 0,
+  onSelectStep
 }) => {
   const getDifficultyLabel = (diff) => {
     switch (diff) {
@@ -30,17 +42,35 @@ export const PhaseHeader = ({
         {diffLabel && <span className="difficulty-pill"> • {diffLabel.toUpperCase()}</span>}
       </div>
 
-      <div className="step-breadcrumbs">
-        <span className={`crumb ${phaseStep === 'story' ? 'active' : ''}`}>1. História</span>
-        <span className="crumb-sep">›</span>
-        <span className={`crumb ${phaseStep === 'sources' ? 'active' : ''}`}>2. Fontes</span>
-        <span className="crumb-sep">›</span>
-        <span className={`crumb ${phaseStep === 'quiz' ? 'active' : ''}`}>3. Desafio</span>
-        <span className="crumb-sep">›</span>
-        <span className={`crumb ${phaseStep === 'feedback' ? 'active' : ''}`}>4. Feedback</span>
-        <span className="crumb-sep">›</span>
-        <span className={`crumb ${phaseStep === 'moral' ? 'active' : ''}`}>5. Moral</span>
-      </div>
+      <nav className="step-breadcrumbs" aria-label="Progresso das etapas da fase">
+        {STEP_ITEMS.map((step, index) => {
+          const isActive = phaseStep === step.key;
+          const isReachable = index <= maxReachedStepIndex;
+
+          return (
+            <Fragment key={step.key}>
+              {index > 0 && <span className="crumb-sep" aria-hidden="true">›</span>}
+              {isReachable && onSelectStep ? (
+                <button
+                  type="button"
+                  className={`crumb crumb-btn ${isActive ? 'active' : 'reachable'}`}
+                  onClick={() => {
+                    if (!isActive) onSelectStep(step.key);
+                  }}
+                  aria-current={isActive ? 'step' : undefined}
+                  title={isActive ? `Etapa atual: ${step.label}` : `Ir para ${step.label}`}
+                >
+                  {step.label}
+                </button>
+              ) : (
+                <span className={`crumb ${isActive ? 'active' : 'locked'}`}>
+                  {step.label}
+                </span>
+              )}
+            </Fragment>
+          );
+        })}
+      </nav>
     </div>
   );
 };

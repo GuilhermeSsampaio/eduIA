@@ -24,6 +24,23 @@ const normalizePhase = (phase) => {
 
 const phasesData = rawPhasesList.map(normalizePhase);
 
+const PHASE_STEPS = ['story', 'sources', 'quiz', 'feedback', 'moral'];
+
+const maxPossibleScores = phasesData.reduce(
+  (acc, phase) => {
+    (phase.questions || []).forEach((q) => {
+      const opts = q.options || [];
+      if (opts.length === 0) return;
+      const maxCog = Math.max(...opts.map((o) => o.scoreCognitive || 0), 0);
+      const maxDep = Math.max(...opts.map((o) => o.scoreTechDependence || 0), 0);
+      acc.cognitive += maxCog;
+      acc.techDependence += maxDep;
+    });
+    return acc;
+  },
+  { cognitive: 0, techDependence: 0 }
+);
+
 const GameStateContext = createContext();
 
 export const useGameState = () => useContext(GameStateContext);
@@ -33,6 +50,10 @@ export const GameStateProvider = ({ children }) => {
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [phaseStep, setPhaseStep] = useState('story'); // 'story', 'sources', 'quiz', 'feedback', 'moral'
+  // Maior índice de etapa alcançado por fase: { [phaseId]: 0..4 }
+  const [maxReachedStepByPhase, setMaxReachedStepByPhase] = useState({});
+  // Telas já lidas (para não repetir a animação typewriter ao revisitar)
+  const [readScreens, setReadScreens] = useState({});
   // userAnswers[phaseId][questionIndex] = answerRecord
   const [userAnswers, setUserAnswers] = useState({});
   const [lastSelectedOption, setLastSelectedOption] = useState(null);
@@ -81,11 +102,34 @@ export const GameStateProvider = ({ children }) => {
     );
   }, [playerAnswers]);
 
+  const markStepReached = (phaseId, stepKey) => {
+    if (!phaseId) return;
+    const stepIdx = PHASE_STEPS.indexOf(stepKey);
+    if (stepIdx === -1) return;
+    setMaxReachedStepByPhase((prev) => ({
+      ...prev,
+      [phaseId]: Math.max(prev[phaseId] ?? 0, stepIdx)
+    }));
+  };
+
+  const currentStepIndex = PHASE_STEPS.indexOf(phaseStep);
+  const maxReachedStepIndex = Math.max(
+    currentStepIndex,
+    maxReachedStepByPhase[currentPhase?.id] ?? 0
+  );
+
+  const markScreenRead = (screenKey) => {
+    if (!screenKey) return;
+    setReadScreens((prev) => (prev[screenKey] ? prev : { ...prev, [screenKey]: true }));
+  };
+
   // Zera todo o progresso/pontuação da rodada
   const resetRoundState = () => {
     setCurrentPhaseIndex(0);
     setCurrentQuestionIndex(0);
     setPhaseStep('story');
+    setMaxReachedStepByPhase({});
+    setReadScreens({});
     setUserAnswers({});
     setLastSelectedOption(null);
   };
@@ -101,12 +145,44 @@ export const GameStateProvider = ({ children }) => {
   };
 
   const nextStoryPage = () => {
+    markScreenRead(`story-${currentPhase?.id}`);
+    markStepReached(currentPhase?.id, 'sources');
     setPhaseStep('sources');
   };
 
   const goToQuizFromSources = () => {
-    setCurrentQuestionIndex(0);
+    markStepReached(currentPhase?.id, 'quiz');
+    setCurrentQuestionIndex((prev) =>
+      prev >= 0 && prev < totalPhaseQuestions ? prev : 0
+    );
     setPhaseStep('quiz');
+  };
+
+  const goToPhaseStep = (targetStep) => {
+    const targetIdx = PHASE_STEPS.indexOf(targetStep);
+    if (targetIdx === -1 || targetIdx > maxReachedStepIndex) return;
+    setPhaseStep(targetStep);
+  };
+
+  const goBackFromSources = () => {
+    setPhaseStep('story');
+  };
+
+  const goBackInQuiz = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
+    } else {
+      setPhaseStep('sources');
+    }
+  };
+
+  const goNextInQuiz = () => {
+    if (currentQuestionIndex < totalPhaseQuestions - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      markStepReached(currentPhase?.id, 'feedback');
+      setPhaseStep('feedback');
+    }
   };
 
   const submitAnswer = (option) => {
@@ -138,15 +214,11 @@ export const GameStateProvider = ({ children }) => {
       }
     }));
 
-    // Verifica se há mais questões nesta fase
-    if (currentQuestionIndex < totalPhaseQuestions - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
-    } else {
-      setPhaseStep('feedback');
-    }
+    markScreenRead(`quiz-${currentPhase.id}-${currentQuestionIndex}`);
   };
 
   const goToMoral = () => {
+    markStepReached(currentPhase?.id, 'moral');
     setPhaseStep('moral');
   };
 
@@ -170,9 +242,11 @@ export const GameStateProvider = ({ children }) => {
         userAnswers[targetPhase.id] &&
         Object.keys(userAnswers[targetPhase.id]).length > 0;
 
+      const targetStep = hasAnsweredTargetPhase ? 'quiz' : 'story';
+      markStepReached(targetPhase?.id, targetStep);
       setCurrentPhaseIndex(targetPhaseIndex);
       setCurrentQuestionIndex(0);
-      setPhaseStep(hasAnsweredTargetPhase ? 'quiz' : 'story');
+      setPhaseStep(targetStep);
       setLastSelectedOption(null);
     }
   };
@@ -198,8 +272,12 @@ export const GameStateProvider = ({ children }) => {
       totalPhases: phasesData.length,
       totalPhaseQuestions,
       phaseStep,
+      maxReachedStepIndex,
+      readScreens,
+      markScreenRead,
       userAnswers,
       scores,
+      maxScores: maxPossibleScores,
       playerAnswers,
       currentPhaseAnswers,
       lastSelectedOption,
@@ -209,6 +287,10 @@ export const GameStateProvider = ({ children }) => {
       returnToMenu,
       nextStoryPage,
       goToQuizFromSources,
+      goToPhaseStep,
+      goBackFromSources,
+      goBackInQuiz,
+      goNextInQuiz,
       submitAnswer,
       goToMoral,
       nextPhase,

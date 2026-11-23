@@ -108,6 +108,32 @@
   font-size: 14px;
   color: var(--text-main);
   line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.impact-notice {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(251, 197, 49, 0.1);
+  border: 2px solid var(--warning-color);
+  border-left-width: 5px;
+  border-radius: 6px;
+  font-family: var(--font-reading);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-main);
+  text-align: justify;
+  box-shadow: 0 0 12px rgba(251, 197, 49, 0.12);
+}
+
+.impact-notice strong {
+  color: var(--warning-color);
+}
+
+[data-theme="light"] .impact-notice {
+  background: rgba(211, 84, 0, 0.08);
+  box-shadow: none;
 }
 
 .start-actions {
@@ -182,13 +208,21 @@
   border: 2px solid var(--card-border);
   color: var(--warning-color);
   font-family: var(--font-retro-bold);
-  font-size: 14px;
-  padding: 10px 24px;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
   width: 100%;
   max-width: 380px;
+}
+
+@media (min-width: 768px) {
+  .credits-btn {
+    font-size: 14px;
+    padding: 10px 24px;
+  }
 }
 
 .credits-btn:hover {
