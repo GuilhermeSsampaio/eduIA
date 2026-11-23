@@ -1,6 +1,7 @@
 export const SourcesStep = ({
   storyTitle,
   sources,
+  onBack,
   onGoToQuiz
 }) => {
   return (
@@ -32,9 +33,23 @@ export const SourcesStep = ({
         ))}
       </div>
 
-      <button className="nav-btn primary-btn action-btn" onClick={onGoToQuiz}>
-        Ir para o Desafio Prático
-      </button>
+      <div className="step-nav-actions">
+        <button
+          type="button"
+          className="nav-btn secondary-btn back-step-btn"
+          onClick={onBack}
+          title="Voltar para a História"
+        >
+          &lt; Voltar
+        </button>
+        <button
+          type="button"
+          className="nav-btn primary-btn"
+          onClick={onGoToQuiz}
+        >
+          Ir para o Desafio Prático
+        </button>
+      </div>
     </div>
   );
 };
